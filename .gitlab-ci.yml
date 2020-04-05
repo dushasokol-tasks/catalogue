@@ -25,6 +25,7 @@ unit-tests:
   stage: unit-tests
   script:
     - set -e
+    - docker -v
     #- ./scripts/build.sh;
     #- ./test/test.sh unit.py
     #- ./test/test.sh container.py --tag $TAG
