@@ -8,9 +8,9 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
- # DOCKER_DRIVER: overlay2
- # DOCKER_TLS_CERTDIR: ""
- # DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
  # DOCKER_VERSION: docker:18.09.7
  # DOCKER_HOST: tcp://docker:2375
  # DOCKER_DRIVER: overlay2
@@ -50,9 +50,9 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker:18-dind
+  image: docker:18.09.7
   services:
-    - docker:18-dind
+    - docker:18.09.7-dind
   before_script:
     - *inject-gopath
   script: 
