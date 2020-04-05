@@ -9,7 +9,7 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
   DOCKER_TLS_CERTDIR: ""
-  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_HOST: tcp://docker:2375
  
 stages:
   - dep
@@ -42,10 +42,12 @@ dep:
     expire_in: 1 hour
 
 test:
+  variables:
+    DOCKER_HOST: tcp://docker:2375
   stage: test
   dependencies:
     - dep
-  image: docker:17
+  image: docker:18
   services:
     - docker:stable-dind
   before_script:
