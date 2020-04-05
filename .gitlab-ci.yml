@@ -43,13 +43,13 @@ dep:
 
 test:
   variables:
-    DOCKER_HOST: tcp://docker:2375
+    DOCKER_HOST: tcp://docker:2375/
   stage: test
   dependencies:
     - dep
-  image: docker:18
+  image: docker:18.09
   services:
-    - docker:stable-dind
+    - docker:18.09-dind
   before_script:
     - *inject-gopath
   script: 
