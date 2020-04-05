@@ -8,12 +8,6 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
-  # DOCKER_DRIVER: overlay2
-  # DOCKER_TLS_CERTDIR: ""
-  # DOCKER_HOST: tcp://docker:2375
-  # DOCKER_VERSION: docker:18.09.7
-  # DOCKER_HOST: tcp://docker:2375
-  # DOCKER_DRIVER: overlay2
 
   DOCKER_TLS_CERTDIR: ""
 
@@ -37,9 +31,9 @@ dep:
     - *inject-gopath
   script: 
     - go version
-  ##  - go get -u github.com/FiloSottile/gvt
-  ##  - gvt restore
-  ##  - go get -u github.com/mattn/goveralls
+    - go get -u github.com/FiloSottile/gvt
+    - gvt restore
+    - go get -u github.com/mattn/goveralls
     
   #go mod tidy && go mod vendor
   artifacts:
@@ -61,10 +55,8 @@ test:
     - *inject-gopath
   script: 
     - set -e
-    ##- ./scripts/build.sh
+    - ./scripts/build.sh
     - docker version
-   # - apk update && apk add bash && apk add sudo
-   # - sudo docker version
-    ##- sudo systemctl start docker.service
+    - apk update && apk add bash && apk add sudo
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
