@@ -24,6 +24,6 @@ unit-tests:
     #- ./scripts/build.sh;
     #- ./test/test.sh unit.py
     #- ./test/test.sh container.py --tag $TAG
-    - echo "TAG: ${TAG}"
-    - echo "GROUP: ${GROUP}"
-    - echo "COMMIT: ${COMMIT}"
+#    - echo 'TAG: ${TAG}'
+#    - echo GROUP: ${GROUP}
+    - "echo 'COMMIT: ${COMMIT} GROUP: ${GROUP} TAG: ${TAG}'"
