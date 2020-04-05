@@ -43,7 +43,7 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker:17
+  image: docker:19
   services:
     - docker:dind
   before_script:
@@ -51,3 +51,5 @@ test:
   script: 
     - set -e
     - ./scripts/build.sh;
+    - ./test/test.sh unit.py
+    - ./test/test.sh container.py --tag $TAG
