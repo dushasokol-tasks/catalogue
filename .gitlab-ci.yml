@@ -8,6 +8,8 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://localhost:2375
  
 stages:
   - dep
@@ -45,7 +47,7 @@ test:
     - dep
   image: docker:17
   services:
-    - docker:dind
+    - docker:stable-dind
   before_script:
     - *inject-gopath
   script: 
