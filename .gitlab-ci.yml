@@ -52,9 +52,6 @@ test:
   services:
     - docker:dind
     privileged: true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /data/gitlab-runner/config:/etc/gitlab-runner
   before_script:
     - *inject-gopath
   script: 
