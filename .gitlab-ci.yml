@@ -19,7 +19,7 @@ stages:
  
 dep:
   stage: dep
-  image: golang:1.14.1-alpine
+  image: golang:1.14.1-buster
   before_script:
     - *inject-gopath
   script: 
