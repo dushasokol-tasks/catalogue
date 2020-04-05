@@ -47,10 +47,6 @@ dep:
     expire_in: 1 hour
 
 test:
-  variables:
-  #  DOCKER_HOST: tcp://docker:2375/
-  #  DOCKER_TLS_CERTDIR: ""
-  #  DOCKER_DRIVER: overlay2
   stage: test
   dependencies:
     - dep
