@@ -23,13 +23,16 @@ stages:
 
 unit-tests:
   stage: unit-tests
+  services:
+    - docker:latest
   script:
     - set -e
-    - ls $CI_PROJECT_DIR
-    - mkdir -p $GOPATH/src # создаем папку для запуска куда положим проект с тестами
-    - mv $CI_PROJECT_DIR/src/* $GOPATH/src # переносим выкаченный раннером проект в GOPATH
-    - cd $GOPATH/src # Переходим в папку с проектами
-    - ls -la
+    - docker -v
+#    - ls $CI_PROJECT_DIR
+#    - mkdir -p $GOPATH/src # создаем папку для запуска куда положим проект с тестами
+#    - mv $CI_PROJECT_DIR/src/* $GOPATH/src # переносим выкаченный раннером проект в GOPATH
+#    - cd $GOPATH/src # Переходим в папку с проектами
+#    - ls -la
     #- ./scripts/build.sh;
     #- ./test/test.sh unit.py
     #- ./test/test.sh container.py --tag $TAG
