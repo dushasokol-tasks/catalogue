@@ -8,10 +8,10 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_VERSION: docker
+ # DOCKER_DRIVER: overlay2
+ # DOCKER_TLS_CERTDIR: ""
+ # DOCKER_HOST: tcp://docker:2375/
+  DOCKER_VERSION: docker:18.09.7
  
 stages:
   - dep
