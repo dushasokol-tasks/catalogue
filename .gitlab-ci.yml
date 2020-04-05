@@ -51,6 +51,7 @@ test:
   script: 
     - set -e
     - ./scripts/build.sh
+    - docker version
     - apk update && apk add bash && apk add sudo
     - sudo systemctl start docker.service
     - ./test/test.sh unit.py
