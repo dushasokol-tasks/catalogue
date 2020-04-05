@@ -8,7 +8,7 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
-  DOCKER_TLS_CERTDIR: ""
+  #DOCKER_TLS_CERTDIR: ""
  
 stages:
   - dep
@@ -56,7 +56,7 @@ test:
   script: 
     - set -e
     ##- ./scripts/build.sh
-    - docker version
+    - sudo docker version
     - apk update && apk add bash && apk add sudo
     ##- sudo systemctl start docker.service
     - ./test/test.sh unit.py
