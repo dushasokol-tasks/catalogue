@@ -54,7 +54,7 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker:18-git
+  image: docker:18-dind
   services:
     - docker:18-dind
   before_script:
