@@ -22,7 +22,7 @@ dep:
   image: golang:1.14.1-alpine
   before_script:
     - *inject-gopath
-  script: go mod tidy && go mod vendor
+  script: go mod tidy
   artifacts:
     name: "vendor-$CI_PIPELINE_ID"
     paths:
