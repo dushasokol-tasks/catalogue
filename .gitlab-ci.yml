@@ -50,6 +50,7 @@ test:
     - *inject-gopath
   script: 
     - set -e
-    - ./scripts/build.sh;
-    - ./test/test.sh unit.py
-    - ./test/test.sh container.py --tag $TAG
+    - ./scripts/build.sh
+    - echo $PWD
+    # - ./test/test.sh unit.py
+    # - ./test/test.sh container.py --tag $TAG
