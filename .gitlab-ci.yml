@@ -1,0 +1,27 @@
+image: golang:1.7
+
+variables:
+  GROUP: weaveworksdemos
+  COMMIT: $CI_BUILD_REF 
+  TAG: CI_COMMIT_TAG
+  REPO: catalogue;
+
+before_script:
+  - go version
+  - echo $CI_PROJECT_DIR
+  - go get -u github.com/FiloSottile/gvt
+  - gvt restore
+  - go get -u github.com/mattn/goveralls
+
+
+stages:
+  - unit-tests
+
+unit-tests:
+  stage: unit-tests
+    script:
+      - set -e
+#      - ./scripts/build.sh;
+#      - ./test/test.sh unit.py
+#      - ./test/test.sh container.py --tag $TAG
+      - echo "${x}"
