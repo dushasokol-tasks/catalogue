@@ -1,5 +1,8 @@
 image: golang:1.7
 
+services:
+  - docker:latest
+
 variables:
   GROUP: weaveworksdemos
   COMMIT: $CI_BUILD_REF 
@@ -8,6 +11,7 @@ variables:
 
 before_script:
   - go version
+  - docker -v
   - echo $CI_PROJECT_DIR
   - echo $TAG
   - echo $COMMIT
@@ -23,11 +27,9 @@ stages:
 
 unit-tests:
   stage: unit-tests
-  services:
-    - docker:latest
   script:
     - set -e
-    - docker -v
+#    - docker -v
 #    - ls $CI_PROJECT_DIR
 #    - mkdir -p $GOPATH/src # создаем папку для запуска куда положим проект с тестами
 #    - mv $CI_PROJECT_DIR/src/* $GOPATH/src # переносим выкаченный раннером проект в GOPATH
