@@ -56,8 +56,9 @@ test:
   script: 
     - set -e
     ##- ./scripts/build.sh
-    - sudo docker version
+   
     - apk update && apk add bash && apk add sudo
+    - sudo docker version
     ##- sudo systemctl start docker.service
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
