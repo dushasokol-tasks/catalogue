@@ -51,6 +51,6 @@ test:
   script: 
     - set -e
     - ./scripts/build.sh
-    - echo $PWD
+    - apk update && apk add bash
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
