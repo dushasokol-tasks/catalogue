@@ -43,12 +43,13 @@ test:
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
   stage: test
   dependencies:
     - dep
-  image: docker:19.03
+  image: docker:latest
   services:
-    - docker:19.03-dind
+    - docker:dind
   before_script:
     - *inject-gopath
   script: 
