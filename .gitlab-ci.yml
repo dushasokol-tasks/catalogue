@@ -43,7 +43,7 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker:18
+  image: docker:17
   services:
     - docker:dind
   before_script:
