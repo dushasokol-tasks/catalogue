@@ -9,6 +9,10 @@ variables:
 before_script:
   - go version
   - echo $CI_PROJECT_DIR
+  - echo $TAG
+  - echo $COMMIT
+  - echo $GROUP
+
   #- go get -u github.com/FiloSottile/gvt
   #- gvt restore
   #- go get -u github.com/mattn/goveralls
@@ -26,4 +30,4 @@ unit-tests:
     #- ./test/test.sh container.py --tag $TAG
 #    - echo 'TAG: ${TAG}'
 #    - echo GROUP: ${GROUP}
-    - "echo COMMIT: ${COMMIT} GROUP: ${GROUP} TAG: ${TAG}"
+    - "echo COMMIT: $COMMIT GROUP: $GROUP TAG: $TAG"
