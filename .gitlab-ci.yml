@@ -11,7 +11,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   DOCKER_HOST: tcp://docker:2375/
-  #DOCKER_TLS_CERTDIR: ""
+  DOCKER_VERSION: docker
  
 stages:
   - dep
@@ -51,9 +51,9 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker:stable
+  image: docker:$DOCKER_VERSION
   services:
-    - docker:dind
+    - docker:$DOCKER_VERSION-dind
   before_script:
     - *inject-gopath
   script: 
