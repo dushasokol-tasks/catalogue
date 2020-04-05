@@ -25,6 +25,7 @@ unit-tests:
   stage: unit-tests
   script:
     - set -e
+    - ls $CI_PROJECT_DIR
     - mkdir -p $GOPATH/src # создаем папку для запуска куда положим проект с тестами
     - mv $CI_PROJECT_DIR/src/* $GOPATH/src # переносим выкаченный раннером проект в GOPATH
     - cd $GOPATH/src # Переходим в папку с проектами
