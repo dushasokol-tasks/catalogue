@@ -1,5 +1,5 @@
 variables:
-  PACKAGE_PATH: /go/src/gitlab.com/[username_for_gitlab]/[project_name]
+  PACKAGE_PATH: /go/src/gitlab.com/iren.vasilevna/catalogue
  
   # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
@@ -22,7 +22,7 @@ dep:
   image: golang:1.14.1-alpine
   before_script:
     - *inject-gopath
-  script: go mod vendor
+  script: go mod tidy && go mod vendor
   artifacts:
     name: "vendor-$CI_PIPELINE_ID"
     paths:
