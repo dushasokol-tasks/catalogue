@@ -1,43 +1,30 @@
-image: golang:1.7
-
-services:
-  - docker:latest
-
 variables:
-  GROUP: weaveworksdemos
-  COMMIT: $CI_BUILD_REF 
-  TAG: $CI_COMMIT_TAG
-  REPO: catalogue;
-
-before_script:
-  - go version
-  - docker -v
-  - echo $CI_PROJECT_DIR
-  - echo $TAG
-  - echo $COMMIT
-  - echo $GROUP
-
-  #- go get -u github.com/FiloSottile/gvt
-  #- gvt restore
-  #- go get -u github.com/mattn/goveralls
-
-
+  PACKAGE_PATH: /go/src/gitlab.com/[username_for_gitlab]/[project_name]
+ 
+  # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+ 
 stages:
-  - unit-tests
-
-unit-tests:
-  stage: unit-tests
-  script:
-    - set -e
-#    - docker -v
-#    - ls $CI_PROJECT_DIR
-#    - mkdir -p $GOPATH/src # создаем папку для запуска куда положим проект с тестами
-#    - mv $CI_PROJECT_DIR/src/* $GOPATH/src # переносим выкаченный раннером проект в GOPATH
-#    - cd $GOPATH/src # Переходим в папку с проектами
-#    - ls -la
-    #- ./scripts/build.sh;
-    #- ./test/test.sh unit.py
-    #- ./test/test.sh container.py --tag $TAG
-#    - echo 'TAG: ${TAG}'
-#    - echo GROUP: ${GROUP}
-    - "echo COMMIT: $COMMIT GROUP: $GROUP TAG: $TAG"
+  - dep
+  # - test
+  # - build
+ 
+# A hack to make Golang-in-Gitlab happy
+.anchors:
+  - &inject-gopath
+      mkdir -p $(dirname ${PACKAGE_PATH})
+      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
+      && cd ${PACKAGE_PATH}
+ 
+dep:
+  stage: dep
+  image: golang:1.17-alpine
+  before_script:
+    - *inject-gopath
+  script: go mod tidy && go mod vendor
+  artifacts:
+    name: "vendor-$CI_PIPELINE_ID"
+    paths:
+      - vendor/
+    expire_in: 1 hour
