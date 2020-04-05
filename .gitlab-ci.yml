@@ -19,9 +19,9 @@ stages:
 
 unit-tests:
   stage: unit-tests
-    script:
-      - set -e
+  script:
+    - set -e
 #      - ./scripts/build.sh;
 #      - ./test/test.sh unit.py
 #      - ./test/test.sh container.py --tag $TAG
-      - echo "${x}"
+    - echo "${x}"
