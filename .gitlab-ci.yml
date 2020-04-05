@@ -52,5 +52,5 @@ test:
     - set -e
     - ./scripts/build.sh
     - echo $PWD
-    # - ./test/test.sh unit.py
-    # - ./test/test.sh container.py --tag $TAG
+    - ./test/test.sh unit.py
+    - ./test/test.sh container.py --tag $TAG
