@@ -7,7 +7,7 @@ variables:
  
 stages:
   - dep
-  # - test
+  - test
   # - build
  
 # A hack to make Golang-in-Gitlab happy
@@ -22,10 +22,28 @@ dep:
   image: golang:1.14.1-alpine
   before_script:
     - *inject-gopath
-  script: go version
+  script: 
+    - go version
+    - go get -u github.com/FiloSottile/gvt
+    - gvt restore
+    - go get -u github.com/mattn/goveralls
+    
   #go mod tidy && go mod vendor
   artifacts:
     name: "vendor-$CI_PIPELINE_ID"
     paths:
       - vendor/
     expire_in: 1 hour
+
+test:
+  stage: test
+  dependencies:
+    - dep
+ # image: docker:17
+  services:
+    - docker:dind
+  before_script:
+    - *inject-gopath
+  script: 
+    - set -e
+    - ./scripts/build.sh;
