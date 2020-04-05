@@ -8,12 +8,14 @@ variables:
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
-# DOCKER_DRIVER: overlay2
- # DOCKER_TLS_CERTDIR: ""
-#  DOCKER_HOST: tcp://docker:2375
- # DOCKER_VERSION: docker:18.09.7
- # DOCKER_HOST: tcp://docker:2375
- # DOCKER_DRIVER: overlay2
+  # DOCKER_DRIVER: overlay2
+  # DOCKER_TLS_CERTDIR: ""
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_VERSION: docker:18.09.7
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_DRIVER: overlay2
+
+  DOCKER_TLS_CERTDIR: ""
 
  
 stages:
@@ -50,20 +52,19 @@ test:
   stage: test
   dependencies:
     - dep
-  image: docker
+  image: docker:stable
   services:
     - name: docker:dind
-      entrypoint: ["env", "-u", "DOCKER_HOST"]
-      command: ["dockerd-entrypoint.sh"]
+
 
   before_script:
     - *inject-gopath
   script: 
     - set -e
     ##- ./scripts/build.sh
-  
-    - apk update && apk add bash && apk add sudo
-    - sudo docker version
+    - docker version
+   # - apk update && apk add bash && apk add sudo
+   # - sudo docker version
     ##- sudo systemctl start docker.service
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
