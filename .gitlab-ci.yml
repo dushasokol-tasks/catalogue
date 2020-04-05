@@ -51,6 +51,6 @@ test:
   script: 
     - set -e
     - ./scripts/build.sh
-    - apk update && apk add bash
+    - apk update && apk add bash && apk add sudo
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
