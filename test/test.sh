@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -ev
-PYTHONPATH="./"
+
 SCRIPT_DIR=`dirname "$0"`
 SCRIPT_NAME=`basename "$0"`
 SSH_OPTS=-oStrictHostKeyChecking=no
@@ -18,7 +18,8 @@ if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
     docker build -t test-container $SCRIPT_DIR > /dev/null
 fi
-
+echo $PYTHONPATH
+python --version
 echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor

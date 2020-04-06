@@ -35,10 +35,10 @@ dep:
   before_script:
     - *inject-gopath
   script: 
-    - go version
-    - go get -u github.com/FiloSottile/gvt
-    - gvt restore
-    - go get -u github.com/mattn/goveralls
+   # - go version
+   # - go get -u github.com/FiloSottile/gvt
+   # - gvt restore
+   # - go get -u github.com/mattn/goveralls
     
   #go mod tidy && go mod vendor
   artifacts:
@@ -62,9 +62,9 @@ test:
     - *inject-gopath
   script: 
     - set -e
-    - docker version
-    - ./scripts/build.sh
-    - docker version
+   # - docker version
+   # - ./scripts/build.sh
+   # - docker version
     - apk update && apk add bash && apk add sudo
     - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
