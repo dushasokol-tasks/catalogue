@@ -17,7 +17,7 @@ variables:
 
 stages:
   - dep
-  #- test
+  - test
   # - build
  
 # A hack to make Golang-in-Gitlab happy
@@ -31,14 +31,11 @@ dep:
   stage: dep
   tags:
 #    - docker
-  services:
-    - name: docker:dind
   image: golang:1.14.1-buster
   before_script:
     - *inject-gopath
   script: 
     - go version
-    - docker version
    # - go get -u github.com/FiloSottile/gvt
    # - gvt restore
    # - go get -u github.com/mattn/goveralls
