@@ -46,6 +46,8 @@ dep:
 
 test:
   stage: test
+  tags:
+    - docker
   dependencies:
     - dep
   image: docker:stable
