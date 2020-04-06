@@ -58,6 +58,12 @@ dep:
 
 test:
   stage: test
+  
+  only:
+    - branches
+  except:
+    - master
+
   dependencies:
     - dep
   script:
