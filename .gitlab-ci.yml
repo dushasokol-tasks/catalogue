@@ -35,7 +35,7 @@ dep:
     - *inject-gopath
   script: 
     - docker version
-    - docker build  -f ./vendor -t test-tag
+    - docker build -t test-tag ./vendor 
     #- apk update && apk add bash && apk add sudo
 
     #- go version
@@ -50,6 +50,7 @@ dep:
     paths:
       - vendor/
     expire_in: 1 hour
+    when: always
 
 
   after_script:
