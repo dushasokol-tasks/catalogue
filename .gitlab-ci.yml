@@ -10,7 +10,7 @@ variables:
   REPO: catalogue
 
   DOCKER_TLS_CERTDIR: ""
-  DOCKER_HOST: tcp://docker:2378
+  DOCKER_HOST: tcp://docker:2375
 
 #cache:
 # key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
