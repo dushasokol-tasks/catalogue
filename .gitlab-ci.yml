@@ -48,12 +48,13 @@ dep:
   artifacts:
     name: "vendor-$CI_PIPELINE_ID"
     paths:
-      - ./vendor/vendor-$CI_PIPELINE_ID
+      - vendor/vendor-$CI_PIPELINE_ID
     expire_in: 1 hour
 
 
   after_script:
-    - ls -a ./vendor
+    - ls -a vendor
+    - ls -a 
 
 
 test:
