@@ -11,6 +11,8 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""
 
+#cache:
+# key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
 
 stages:
   - dep
@@ -33,9 +35,9 @@ dep:
     - *inject-gopath
   script: 
     - go version
-    - go get -u github.com/FiloSottile/gvt
-    - gvt restore
-    - go get -u github.com/mattn/goveralls
+ #   - go get -u github.com/FiloSottile/gvt
+ #   - gvt restore
+ #   - go get -u github.com/mattn/goveralls
     
   #go mod tidy && go mod vendor
   artifacts:
