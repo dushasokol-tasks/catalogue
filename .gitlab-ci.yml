@@ -48,7 +48,7 @@ dep:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - vendor/
+      - art/
     expire_in: 1 hour
     when: always
 
@@ -56,7 +56,8 @@ dep:
   after_script:
     - ls -a vendor
     - ls -a 
-
+    - docker ps
+    - docker images
 
 test:
   stage: test
