@@ -35,7 +35,7 @@ dep:
     - *inject-gopath
   script: 
     - docker version
-    - docker build -t vendor/test ./vendor
+    - docker build  -f ./vendor ./vendor/art -t test-tag
     #- apk update && apk add bash && apk add sudo
 
     #- go version
