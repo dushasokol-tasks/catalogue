@@ -64,6 +64,7 @@ test:
     - *inject-gopath
   script: 
     - set -e
+    - go version
     - apk update && apk add python3 && apk add py-pip
    # - docker version
    # - ./scripts/build.sh
