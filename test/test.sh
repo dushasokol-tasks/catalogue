@@ -18,14 +18,17 @@ if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
     docker build -t test-container $SCRIPT_DIR > /dev/null
 fi
-echo $PYTHONPATH
-python3 --version
+
+echo ${PYTHONPATH}
+go version
+
+#python3 --version
 echo "Testing $1"
 pwd
 ls
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
-echo $GOPATH
+echo ${GOPATH}
 $DOCKER_CMD run \
     --rm \
     --name test \
