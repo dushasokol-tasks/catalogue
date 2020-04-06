@@ -10,14 +10,11 @@ variables:
   REPO: catalogue
 
   DOCKER_TLS_CERTDIR: "/certs"
-  #DOCKER_HOST: tcp://docker:2375
 
-#cache:
-# key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
 
 stages:
   - dep
-  - test
+  #- test
   # - build
  
 # A hack to make Golang-in-Gitlab happy
@@ -38,6 +35,7 @@ dep:
     - *inject-gopath
   script: 
     - docker version
+    - docker build -t test ./vendor
     #- apk update && apk add bash && apk add sudo
 
     #- go version
