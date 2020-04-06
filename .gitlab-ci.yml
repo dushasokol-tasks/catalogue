@@ -41,8 +41,8 @@ dep:
     - docker build -t bolvan ./vendor
     - docker save -o bolvan.tar bolvan
     
-    - docker tag bolvan http://instance-1:5000/bolvan:$CI_COMMIT_REF_SLUG
-    - docker push http://instance-1:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker tag bolvan 0.0.0.0:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker push 0.0.0.0:5000/bolvan:$CI_COMMIT_REF_SLUG
 
     #- apk update && apk add bash && apk add sudo
     #- go version
