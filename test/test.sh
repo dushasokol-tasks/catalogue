@@ -12,6 +12,8 @@ else
     DOCKER_CMD="sudo docker"
 fi
 
+echo $DOCKER_CMD
+
 if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
     docker build -t test-container $SCRIPT_DIR > /dev/null
