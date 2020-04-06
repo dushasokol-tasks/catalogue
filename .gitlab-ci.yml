@@ -11,9 +11,7 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""
 
-tags:
-  - docker
- 
+
 stages:
   - dep
   - test
@@ -28,6 +26,8 @@ stages:
  
 dep:
   stage: dep
+  tags:
+    - docker
   image: golang:1.14.1-buster
   before_script:
     - *inject-gopath
