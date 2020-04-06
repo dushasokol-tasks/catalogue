@@ -9,7 +9,7 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
 
-  DOCKER_TLS_CERTDIR: ""
+  DOCKER_TLS_CERTDIR: "/certs"
   DOCKER_HOST: tcp://docker:2375
 
 #cache:
