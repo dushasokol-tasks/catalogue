@@ -40,14 +40,14 @@ dep:
     - docker version
     - docker build -t bolvan ./vendor
     - docker save -o bolvan.tar bolvan
-    
+    - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
     - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
 
     #- apk update && apk add bash && apk add sudo
     #- go version
 
-   # - go get -u github.com/FiloSottile/gvt     
+   # - go get -u github.com/FiloSottile/gvt      
    # - gvt restore
    # - go get -u github.com/mattn/goveralls
      
