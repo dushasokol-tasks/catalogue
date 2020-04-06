@@ -21,6 +21,8 @@ fi
 echo $PYTHONPATH
 python3 --version
 echo "Testing $1"
+pwd
+ls
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 $DOCKER_CMD run \
@@ -34,5 +36,5 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python3 ./test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python3 test/$@"
 
