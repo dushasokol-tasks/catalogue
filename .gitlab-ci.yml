@@ -53,7 +53,9 @@ test:
  #   - docker
   dependencies:
     - dep
-  image: docker:stable
+  #image: docker:stable
+  image: docker:3.6.10-buster
+  
   services:
     - name: docker:dind
 
