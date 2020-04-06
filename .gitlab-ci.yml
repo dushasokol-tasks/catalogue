@@ -11,6 +11,9 @@ variables:
 
   DOCKER_TLS_CERTDIR: "/certs"
 
+image: docker:stable
+services:
+  - name: docker:dind
 
 stages:
   - dep
@@ -28,14 +31,18 @@ dep:
   stage: dep
   tags:
 #    - docker
-  services:
-    - name: docker:dind
-  image: docker:stable
+ # services:
+  #  - name: docker:dind
+  #image: docker:stable
   before_script:
     - *inject-gopath
   script: 
     - docker version
-    - docker build -t test-tag ./vendor 
+    - docker build -t bolvan ./vendor
+    - docker save -o bolvan.tar bolvan
+    - docker tag bolvan my-private-registry:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker push my-private-registry:5000/bolvan:$CI_COMMIT_REF_SLUG
+
     #- apk update && apk add bash && apk add sudo
 
     #- go version
@@ -54,8 +61,6 @@ dep:
 
 
   after_script:
-    - ls -a vendor
-    - ls -a 
     - docker ps
     - docker images
 
@@ -64,11 +69,19 @@ test:
   
   only:
     - branches
-  except:
-    - master
+ # except:
+ #   - master
+  image: my-private-registry:5000/bolvan:$CI_COMMIT_REF_SLUG
 
   dependencies:
     - dep
   script:
     - ls -a ./vendor
     - docker version
+
+  after_script:
+    - docker ps
+    - docker images
+
+
+
