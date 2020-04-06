@@ -64,7 +64,7 @@ test:
     - *inject-gopath
   script: 
     - set -e
-    - apk update && apk add python3 && apk add pip
+    - apk update && apk add python3 && apk add pip3
    # - docker version
    # - ./scripts/build.sh
    # - docker version
