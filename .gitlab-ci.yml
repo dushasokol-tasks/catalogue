@@ -54,5 +54,5 @@ dep:
     expire_in: 1 hour
 
   after_script:
-    - ls -a /vendor
+    - ls -a ./vendor
 
