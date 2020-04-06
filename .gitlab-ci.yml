@@ -49,7 +49,7 @@ dep:
 
    # - go get -u github.com/FiloSottile/gvt
    # - gvt restore
-   # - go get -u github.com/mattn/goveralls 
+   # - go get -u github.com/mattn/goveralls
      
   #go mod tidy && go mod vendor
   artifacts:
