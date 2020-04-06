@@ -35,7 +35,7 @@ dep:
   before_script:
     - *inject-gopath
   script: 
-   # - go version
+    - go version
    # - go get -u github.com/FiloSottile/gvt
    # - gvt restore
    # - go get -u github.com/mattn/goveralls
