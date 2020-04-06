@@ -71,7 +71,7 @@ test:
     - branches
  # except:
  #   - master
-  image: my-private-registry:5000/bolvan:$CI_COMMIT_REF_SLUG
+  image: bolvan
 
   dependencies:
     - dep
