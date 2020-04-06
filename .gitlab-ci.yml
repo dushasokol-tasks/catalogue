@@ -46,9 +46,9 @@ dep:
     
   #go mod tidy && go mod vendor
   artifacts:
-    image: "vendor-$CI_PIPELINE_ID"
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - ./vendor
+      - vendor/
     expire_in: 1 hour
 
 
