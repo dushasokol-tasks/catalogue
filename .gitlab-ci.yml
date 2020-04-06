@@ -45,7 +45,6 @@ dep:
     - docker push instance-1:5000/bolvan:$CI_COMMIT_REF_SLUG
 
     #- apk update && apk add bash && apk add sudo
-
     #- go version
 
    # - go get -u github.com/FiloSottile/gvt
