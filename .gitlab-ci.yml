@@ -76,7 +76,7 @@ test:
   dependencies:
     - dep
   script:
-    - ls -a ./vendor
+    - ls -a ./vendor 
     - docker version
 
   after_script:
