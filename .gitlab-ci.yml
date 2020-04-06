@@ -59,7 +59,6 @@ dep:
     expire_in: 1 hour
     when: always
 
-
   after_script:
     - docker ps
     - docker images
