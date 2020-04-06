@@ -66,5 +66,5 @@ test:
     - ./scripts/build.sh
     - docker version
     - apk update && apk add bash && apk add sudo
-   - ./test/test.sh unit.py
+    - ./test/test.sh unit.py
     - ./test/test.sh container.py --tag $TAG
