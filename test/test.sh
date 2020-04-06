@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -ev
-
+PYTHONPATH="./"
 SCRIPT_DIR=`dirname "$0"`
 SCRIPT_NAME=`basename "$0"`
 SSH_OPTS=-oStrictHostKeyChecking=no
