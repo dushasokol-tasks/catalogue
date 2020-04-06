@@ -19,7 +19,7 @@ if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     docker build -t test-container $SCRIPT_DIR > /dev/null
 fi
 echo $PYTHONPATH
-python --version
+python3 --version
 echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
