@@ -11,6 +11,8 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""
 
+tags:
+  - docker
  
 stages:
   - dep
