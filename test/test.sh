@@ -36,5 +36,5 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; pwd ; cd test ; python3 ${PWD}/test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; pwd ; cd test ; sudo python3 ${PWD}/test/$@"
 
