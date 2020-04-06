@@ -50,7 +50,7 @@ dep:
   artifacts:
     name: "vendor-$CI_PIPELINE_ID"
     paths:
-      - ./vendor/
+      - ./vendor/vendor-$CI_PIPELINE_ID
     expire_in: 1 hour
 
 
