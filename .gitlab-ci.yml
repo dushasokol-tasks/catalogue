@@ -38,8 +38,9 @@ dep:
     - *inject-gopath
   script: 
     - docker version
-    - apk update && apk add bash && apk add sudo
-    - go version
+    #- apk update && apk add bash && apk add sudo
+
+    #- go version
 
    # - go get -u github.com/FiloSottile/gvt
    # - gvt restore
@@ -51,4 +52,7 @@ dep:
     paths:
       - vendor/
     expire_in: 1 hour
+
+  after_script:
+    - ls -a /vendor
 
