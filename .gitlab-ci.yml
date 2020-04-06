@@ -29,7 +29,7 @@ stages:
 dep:
   stage: dep
   tags:
-    - docker
+#    - docker
   image: golang:1.14.1-buster
   before_script:
     - *inject-gopath
@@ -49,7 +49,7 @@ dep:
 test:
   stage: test
   tags:
-    - docker
+ #   - docker
   dependencies:
     - dep
   image: docker:stable
