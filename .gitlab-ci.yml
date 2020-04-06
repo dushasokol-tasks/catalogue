@@ -35,7 +35,7 @@ dep:
     - *inject-gopath
   script: 
     - docker version
-    - docker build  -f ./vendor ./vendor -t test-tag
+    - docker build  -f ./vendor -t test-tag
     #- apk update && apk add bash && apk add sudo
 
     #- go version
@@ -46,9 +46,9 @@ dep:
     
   #go mod tidy && go mod vendor
   artifacts:
-    name: "vendor-$CI_PIPELINE_ID"
+    image: "vendor-$CI_PIPELINE_ID"
     paths:
-      - vendor/vendor-$CI_PIPELINE_ID
+      - ./vendor
     expire_in: 1 hour
 
 
