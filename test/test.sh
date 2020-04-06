@@ -34,4 +34,5 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python3 ./test/$@"
+
