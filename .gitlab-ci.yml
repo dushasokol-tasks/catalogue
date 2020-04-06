@@ -38,6 +38,7 @@ dep:
     - *inject-gopath
   script: 
     - docker version
+    - apk update && apk add bash && apk add sudo
     - go version
 
    # - go get -u github.com/FiloSottile/gvt
