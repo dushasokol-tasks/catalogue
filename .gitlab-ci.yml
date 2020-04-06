@@ -17,7 +17,7 @@ variables:
 
 stages:
   - dep
-  #- test
+  - test
   # - build
  
 # A hack to make Golang-in-Gitlab happy
@@ -56,3 +56,11 @@ dep:
   after_script:
     - ls -a ./vendor
 
+
+test:
+  stage: test
+  dependencies:
+    - dep
+  script:
+    - ls -a ./vendor
+    - docker version
