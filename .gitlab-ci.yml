@@ -33,12 +33,13 @@ dep:
 #    - docker
   services:
     - name: docker:dind
-  image: golang:1.14.1-buster
+  image: docker:stable
   before_script:
     - *inject-gopath
   script: 
-    - go version
     - docker version
+    - go version
+
    # - go get -u github.com/FiloSottile/gvt
    # - gvt restore
    # - go get -u github.com/mattn/goveralls
