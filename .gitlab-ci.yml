@@ -13,7 +13,7 @@ variables:
 
 image: docker:stable
 services:
-  - name: docker:dind
+#  - name: docker:dind
 
 stages:
   - dep
