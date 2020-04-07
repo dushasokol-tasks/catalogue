@@ -10,15 +10,15 @@ variables:
   REPO: catalogue
 
   DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_DRIVER: overlay2
+  #DOCKER_HOST: tcp://docker:2375
+  #DOCKER_DRIVER: overlay2
 
 image: docker:stable
 #image: golang:1.14.1-alpine
 services:
- # - name: 10.128.0.9:5000/docker:dind
+  - name: 10.128.0.9:5000/docker:dind
  # - name: docker:dind
- - name: 10.128.0.9:5000/custom-docker:dind
+ #- name: 10.128.0.9:5000/custom-docker:dind
 
 stages:
   - dep
