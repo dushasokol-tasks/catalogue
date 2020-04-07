@@ -13,9 +13,9 @@ variables:
 
 image: docker:stable
 #image: golang:1.14.1-alpine
-#services:
+services:
  # - name: 10.128.0.9:5000/mydocker:latest
-  #- name: 
+  - name: docker:dind
 
 stages:
   - dep
@@ -33,8 +33,8 @@ dep:
   stage: dep
   tags:
 #    - docker
-  services:
-    - name: 10.128.0.9:5000/mydocker:dind
+  #services:
+  #  - name: 10.128.0.9:5000/mydocker:dind
   #image: docker:stable 
   before_script:
     - *inject-gopath
