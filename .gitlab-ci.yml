@@ -18,7 +18,7 @@ variables:
 image: 10.128.0.9:5000/custom-docker:dind
 #image: golang:1.14.1-alpine
 services:
-  - docker:dind
+  - name docker:dind
     entrypoint: ["dockerd-entrypoint.sh"]
     command: ["--insecure-registry", "10.128.0.9:2376"]
    # entrypoint: ["env", "-u", "DOCKER_HOST"]
