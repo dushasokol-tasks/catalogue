@@ -11,7 +11,7 @@ variables:
 
   #DOCKER_TLS_CERTDIR: ""
   DOCKER_TLS_CERTDIR: "/certs"
-  #DOCKER_HOST: tcp://localhost:2375
+  DOCKER_HOST: tcp://localhost:2375
   #DOCKER_HOST: tcp://10.128.0.9:2376
   #DOCKER_DRIVER: overlay2
 
@@ -20,7 +20,7 @@ image: 10.128.0.9:5000/custom-docker:dind
 services:
   - name: docker:dind
     entrypoint: ["dockerd-entrypoint.sh"]
-    command: ["--insecure-registry", "10.128.0.9:2376"]
+    command:  ["--insecure-registry=10.128.0.9:5000"]
    # entrypoint: ["env", "-u", "DOCKER_HOST"]
     #command: ["dockerd-entrypoint.sh"]
   #- name: docker:dind
@@ -58,7 +58,7 @@ dep:
     - echo $DOCKER_HOST
 
    # - ls /etc/docker/certs.d/10.128.0.9:5000
-   # - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
+    - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
     #- docker push 10.128.0.9:5000/alpine
     #- docker pull distribution/registry:master
     - docker version
