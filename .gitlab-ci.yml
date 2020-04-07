@@ -25,6 +25,11 @@ services:
 
  #- name: 10.128.0.9:5000/custom-docker:dind
 
+
+before_script:
+  - docker info
+
+
 stages:
   - dep
   - test
