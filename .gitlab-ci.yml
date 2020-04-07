@@ -40,7 +40,7 @@ dep:
     - *inject-gopath
   script: 
     - echo $repo_user
-    - ls /etc/docker/certs.d/10.128.0.9:5000
+   # - ls /etc/docker/certs.d/10.128.0.9:5000
    # - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
     #- docker push 10.128.0.9:5000/alpine
     #- docker pull distribution/registry:master
