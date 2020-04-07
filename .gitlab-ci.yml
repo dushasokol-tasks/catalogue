@@ -11,8 +11,8 @@ variables:
 
   DOCKER_TLS_CERTDIR: "/certs"
 
-#image: docker:stable
-image: golang:1.14.1-alpine
+image: docker:stable
+#image: golang:1.14.1-alpine
 services:
   - name: docker:dind
   #- name: 
@@ -40,6 +40,7 @@ dep:
     - *inject-gopath
   script: 
     - echo $repo_user
+    - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
     - docker push 10.128.0.9:5000/alpine
     #- docker pull distribution/registry:master
     #- docker version
