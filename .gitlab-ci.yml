@@ -21,7 +21,7 @@ image: $MY_COOL_REGISTY/custom-docker:dind
 services:
   - name: docker:dind
     entrypoint: ["dockerd-entrypoint.sh"]
-    command:  ["--insecure-registry=$MY_COOL_REGISTY"]
+    command:  ["--insecure-registry=10.128.0.9:5000"]
    # entrypoint: ["env", "-u", "DOCKER_HOST"]
     #command: ["dockerd-entrypoint.sh"]
   #- name: docker:dind
