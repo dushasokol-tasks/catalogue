@@ -38,13 +38,14 @@ dep:
     - *inject-gopath
   script: 
     - echo $repo_user
-    - docker pull distribution/registry:master
-    - docker version
-    - docker build -t bolvan ./vendor
-    - docker save -o bolvan.tar bolvan
-    - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
-    - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
-    - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker push 10.128.0.9:5000/alpine
+    #- docker pull distribution/registry:master
+    #- docker version
+    #- docker build -t bolvan ./vendor
+    #- docker save -o bolvan.tar bolvan
+    #- docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
+    #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
 
     #- apk update && apk add bash && apk add sudo
     #- go version
