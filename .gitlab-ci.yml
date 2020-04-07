@@ -9,8 +9,9 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
 
-  DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: tcp://localhost:2376
+  DOCKER_TLS_CERTDIR: ""
+  #DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://localhost:2375
   DOCKER_DRIVER: overlay2
 
 image: docker:stable
@@ -18,6 +19,9 @@ image: docker:stable
 services:
   #- name: 10.128.0.9:5000/docker:dind
   - name: docker:dind
+    entrypoint: ["env", "-u", "DOCKER_HOST"]
+    command: ["dockerd-entrypoint.sh"]
+
  #- name: 10.128.0.9:5000/custom-docker:dind
 
 stages:
