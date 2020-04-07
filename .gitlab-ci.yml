@@ -11,7 +11,7 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""
   #DOCKER_TLS_CERTDIR: "/certs"
-  #DOCKER_HOST: tcp://localhost:2375
+  DOCKER_HOST: tcp://localhost:2375
   #DOCKER_DRIVER: overlay2
 
 image: docker:stable
@@ -48,6 +48,7 @@ dep:
   script: 
     - echo $repo_user
     - echo $DOCKER_HOST
+
    # - ls /etc/docker/certs.d/10.128.0.9:5000
    # - docker login -u$repo_user -p$repo_pass 10.128.0.9:5000
     #- docker push 10.128.0.9:5000/alpine
