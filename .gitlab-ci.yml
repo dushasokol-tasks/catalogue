@@ -14,7 +14,7 @@ variables:
 image: docker:stable
 #image: golang:1.14.1-alpine
 services:
-  - name: 10.128.0.9:5000/mydocker:dind
+  - name: 10.128.0.9:5000/mydocker
   #- name: 
 
 stages:
