@@ -13,8 +13,8 @@ variables:
 
 image: docker:stable
 #image: golang:1.14.1-alpine
-services:
-  - name: 10.128.0.9:5000/mydocker:latest
+#services:
+ # - name: 10.128.0.9:5000/mydocker:latest
   #- name: 
 
 stages:
