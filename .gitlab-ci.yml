@@ -11,10 +11,11 @@ variables:
 
   DOCKER_TLS_CERTDIR: "/certs"
 
-image: docker:stable
+#image: docker:stable
+image: golang:1.14.1-alpine
 services:
   #- name: docker:dind
-  - name: golang:1.14.1-alpine
+  #- name: 
 
 stages:
   - dep
