@@ -12,16 +12,17 @@ variables:
   #DOCKER_TLS_CERTDIR: ""
   DOCKER_TLS_CERTDIR: "/certs"
   #DOCKER_HOST: tcp://localhost:2375
-  DOCKER_HOST: tcp://10.128.0.9:2376
+  #DOCKER_HOST: tcp://10.128.0.9:2376
   #DOCKER_DRIVER: overlay2
 
 image: 10.128.0.9:5000/docker:dind
 #image: golang:1.14.1-alpine
 services:
   - name: 10.128.0.9:5000/docker:dind
+    entrypoint: ["env", "-u", "DOCKER_HOST"]
+    command: ["dockerd-entrypoint.sh"]
   #- name: docker:dind
-    #entrypoint: ["env", "-u", "DOCKER_HOST"]
-    #command: ["dockerd-entrypoint.sh"]
+
 
  #- name: 10.128.0.9:5000/custom-docker:dind
 
