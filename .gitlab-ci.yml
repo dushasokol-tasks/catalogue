@@ -35,7 +35,7 @@ dep:
 #    - docker
   services:
     - name: 10.128.0.9:5000/mydocker:dind
-  #image: docker:stable
+  #image: docker:stable 
   before_script:
     - *inject-gopath
   script: 
