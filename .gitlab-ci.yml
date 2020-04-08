@@ -93,6 +93,8 @@ build_test:
     - set -e
     
     - ./scripts/build.sh;
+    - docker ps -a
+    - docker images
     #- docker build -t bolvan ./vendor
     #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG

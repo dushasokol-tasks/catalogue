@@ -44,13 +44,16 @@ $DOCKER_CMD build \
   --build-arg BUILD_VERSION=$BUILD_VERSION \
   --build-arg BUILD_DATE=$BUILD_DATE \
   --build-arg COMMIT=$COMMIT \
-  -t ${REPO}:${COMMIT} \
+  -t 10.128.0.9:5000/${REPO}:${COMMIT} \
   -f $BUILD_DIR/docker/catalogue/Dockerfile $BUILD_DIR/docker/catalogue;
 
 $DOCKER_CMD build \
   -t ${REPO}-db:${COMMIT} \
   -f $BUILD_DIR/docker/catalogue-db/Dockerfile $BUILD_DIR/docker/catalogue-db/;
 
+#docker tag bolvan 10.128.0.9:5000/${REPO}:${COMMIT}
+#docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+
 ls $BUILD_DIR/docker/catalogue-db/
 
-rm -rf $BUILD_DIR
+#rm -rf $BUILD_DIR
