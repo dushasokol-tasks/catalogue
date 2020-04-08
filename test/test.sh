@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -ev
 
@@ -40,6 +40,4 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-  #  sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; "
-  #  sh -c "pwd ; cd test ; sudo python3 ${PWD}/test/$@"
-sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sudo python3 test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sudo python test/$@"
