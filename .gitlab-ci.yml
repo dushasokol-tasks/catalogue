@@ -84,7 +84,7 @@ build_test:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
-    - apk add git make musl-dev go gvt
+    - apk add git make musl-dev go
     - go get -u github.com/FiloSottile/gvt      
     - gvt restore
     #- go get -u github.com/mattn/goveralls
