@@ -84,8 +84,8 @@ build_test:
     #- docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
-    - go get -u github.com/FiloSottile/gvt      
-    - gvt restore
+    #- go get -u github.com/FiloSottile/gvt      
+    #- gvt restore
     #- go get -u github.com/mattn/goveralls
 
     - set -e
@@ -98,7 +98,7 @@ build_test:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - art/
+      - vendor/
     expire_in: 1 hour
     when: always
 
