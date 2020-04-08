@@ -9,7 +9,7 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
   MY_COOL_REGISTY: 10.128.0.9:5000
-  GITLAB_OVERLAY: 0
+  GITLAB_OVERLAY: 1
 
   DOCKER_TLS_CERTDIR: "/certs"
   #DOCKER_HOST: tcp://localhost:2375
@@ -91,7 +91,7 @@ build_test:
    # - gvt restore
     #- go get -u github.com/mattn/goveralls
 
-    - ./scripts/build.sh;
+    #- ./scripts/build.sh;
     - ./test/test.sh unit.py
 
     #- docker build -t bolvan ./vendor

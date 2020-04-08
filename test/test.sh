@@ -28,6 +28,7 @@ CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
 $DOCKER_CMD run \
+    --privileged \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
