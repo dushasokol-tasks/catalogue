@@ -91,10 +91,7 @@ build_test:
    # - gvt restore
     #- go get -u github.com/mattn/goveralls
     - set -e
-    
-    - apk add sudo
-    - sudo ls
-    - ./scripts/build.sh;
+  #  - ./scripts/build.sh;
     - ./test/test.sh unit.py
 
     #- docker build -t bolvan ./vendor
