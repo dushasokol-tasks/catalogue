@@ -10,7 +10,6 @@ variables:
   REPO: catalogue
   MY_COOL_REGISTY: 10.128.0.9:5000
 
-  #DOCKER_TLS_CERTDIR: ""
   DOCKER_TLS_CERTDIR: "/certs"
   #DOCKER_HOST: tcp://localhost:2375
   #DOCKER_HOST: tcp://10.128.0.9:2376
@@ -22,15 +21,6 @@ services:
   - name: docker:dind
     entrypoint: ["dockerd-entrypoint.sh"]
     command:  ["--insecure-registry=10.128.0.9:5000"]
-   # entrypoint: ["env", "-u", "DOCKER_HOST"]
-    #command: ["dockerd-entrypoint.sh"]
-  #- name: docker:dind
-
-
- #- name: 10.128.0.9:5000/custom-docker:dind
-
-
-
 
 stages:
 # make all needs microservices containers for integrated tests
@@ -38,11 +28,11 @@ stages:
 #
   - build_test
 # make go environment, build test_container, make unit tests
-  - integration_tests
+#  - integration_tests
 # run all containers and check
-  - stage
+#  - stage
 # release for human rewiev
-  - deploy
+#  - deploy
 # manual deploy to prod
  
 # A hack to make Golang-in-Gitlab happy
@@ -62,11 +52,8 @@ create_containers:
   script: 
     - echo $repo_user
     - echo $DOCKER_HOST
-    - docker version
-    - docker build -t bolvan ./vendor
-  
-    - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
-    - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+
+
 
     #- apk update && apk add bash && apk add sudo
     #- go version
@@ -87,18 +74,25 @@ create_containers:
     - docker ps
     - docker images
  
-test:
-  stage: test
+build_test:
+  stage: build_test
    
   only:
     - branches
  # except:
  #   - master
-  image: $MY_COOL_REGISTY/bolvan:$CI_COMMIT_REF_SLUG
+  image: $MY_COOL_REGISTY/bios:dc-ssh
+  services:
+  - name: docker:dind
+    entrypoint: ["dockerd-entrypoint.sh"]
+    command:  ["--insecure-registry=10.128.0.9:5000"]
 
-  dependencies:
-    - dep
+#  dependencies:
+ #   - dep
   script:
+    - docker build -t bolvan ./vendor
+    - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     - ls -a ./vendor
     - docker version
 
