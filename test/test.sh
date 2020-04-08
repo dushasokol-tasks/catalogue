@@ -27,8 +27,6 @@ echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
-${PWD}
-
 $DOCKER_CMD run \
     --rm \
     --name test \
@@ -40,4 +38,4 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python /go/src/gitlab.com/iren.vasilevna/catalogue/test/$@"
