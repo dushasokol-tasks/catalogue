@@ -9,6 +9,7 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
   MY_COOL_REGISTY: 10.128.0.9:5000
+  GITLAB_OVERLAY: 1
 
   DOCKER_TLS_CERTDIR: "/certs"
   #DOCKER_HOST: tcp://localhost:2375
@@ -53,11 +54,7 @@ create_containers:
     - echo $DOCKER_HOST
     #- apk update && apk add bash && apk add sudo
     #- go version
-
-   # - go get -u github.com/FiloSottile/gvt      
-   # - gvt restore
-   # - go get -u github.com/mattn/goveralls
-     
+    
   #go mod tidy && go mod vendor
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
@@ -91,15 +88,21 @@ build_test:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
-    - docker build -t bolvan ./vendor
-    - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
-    - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
-    - ls -a ./vendor
-    - docker version
+    - go get -u github.com/FiloSottile/gvt      
+    - gvt restore
+    #- go get -u github.com/mattn/goveralls
+
+    - set -e
+    - ./scripts/build.sh;
+    #- docker build -t bolvan ./vendor
+    #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    #- ls -a ./vendor
+    #- docker version
 
   after_script:
     - docker ps
-    - docker images
+    #- docker images
 
 
 
