@@ -12,22 +12,20 @@ else
     DOCKER_CMD="sudo docker"
 fi
 
-echo $DOCKER_CMD
+#echo $DOCKER_CMD
 
 if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
     docker build -t test-container $SCRIPT_DIR > /dev/null
 fi
 
-echo ${PYTHONPATH}
-go version
+#echo ${PYTHONPATH}
+#go version
 
 echo "Testing $1"
 
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
-
-cat /go/src/gitlab.com/iren.vasilevna/catalogue/test/unit.py
 
 $DOCKER_CMD run \
     --rm \
@@ -40,4 +38,4 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python /go/src/gitlab.com/iren.vasilevna/catalogue/test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sudo python test/$@"
