@@ -30,7 +30,7 @@ CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
 $DOCKER_CMD run \
-    --privileged \
+#    --privileged \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
@@ -41,4 +41,4 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls; pwd; python test/$@"
