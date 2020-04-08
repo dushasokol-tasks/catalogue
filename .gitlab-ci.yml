@@ -69,8 +69,8 @@ build_test:
     - branches
  # except:
  #   - master
-  image: golang:1.14.1-buster
-  #image: $MY_COOL_REGISTY/bios:dc-ssh
+ # image: golang:1.14.1-buster
+  image: $MY_COOL_REGISTY/bios:dc-ssh
   #services:
   #- name: docker:dind
   #  entrypoint: ["dockerd-entrypoint.sh"]
@@ -81,9 +81,10 @@ build_test:
 
   before_script:
     - *inject-gopath
-    #- docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
+    - apk add go
     - go get -u github.com/FiloSottile/gvt      
     - gvt restore
     #- go get -u github.com/mattn/goveralls
@@ -98,7 +99,7 @@ build_test:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - /
+      - vendor/
     expire_in: 1 hour
     when: always
 
