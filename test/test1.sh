@@ -21,16 +21,17 @@ fi
 
 #echo ${PYTHONPATH}
 #go version
-echo $SCRIPT_DIR
-echo $CODE_DIR
+# echo $SCRIPT_DIR
+
 
 echo "Testing $1"
 
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
+echo "$CODE_DIR"
+
 $DOCKER_CMD run \
-#    --privileged \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
