@@ -9,7 +9,7 @@ SSH_OPTS=-oStrictHostKeyChecking=no
 if [[ "$(uname)" == "Darwin" ]]; then
     DOCKER_CMD=docker
 else
-    DOCKER_CMD="sudo docker"
+    DOCKER_CMD="docker"
 fi
 
 echo $SCRIPT_DIR
