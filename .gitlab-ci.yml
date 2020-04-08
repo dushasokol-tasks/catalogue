@@ -33,9 +33,17 @@ services:
 
 
 stages:
-  - dep
-  - test
-  # - build
+# make all needs microservices containers for integrated tests
+  - create_containers
+#
+  - build_test
+# make go environment, build test_container, make unit tests
+  - integration_tests
+# run all containers and check
+  - stage
+# release for human rewiev
+  - deploy
+# manual deploy to prod
  
 # A hack to make Golang-in-Gitlab happy
 .anchors:
@@ -44,28 +52,19 @@ stages:
       && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
       && cd ${PACKAGE_PATH}
  
-dep:
-  stage: dep
+create_containers:
+  stage: create_containers
   tags:
-#    - docker
-  #services:
-  #  - name: 10.128.0.9:5000/mydocker:dind
-  #image: docker:stable 
+#    - dev
   before_script:
     - *inject-gopath
+    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
   script: 
     - echo $repo_user
     - echo $DOCKER_HOST
-
-   # - ls /etc/docker/certs.d/10.128.0.9:5000
-    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
-    #- docker push 10.128.0.9:5000/alpine
-    #- docker pull distribution/registry:master
-    - docker-compose
     - docker version
     - docker build -t bolvan ./vendor
-    #- docker save -o bolvan.tar bolvan
- 
+  
     - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     - docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
 
