@@ -9,7 +9,7 @@ variables:
   TAG: $CI_COMMIT_TAG 
   REPO: catalogue
   MY_COOL_REGISTY: 10.128.0.9:5000
-  GITLAB_OVERLAY: 1
+  GITLAB_OVERLAY: 0
 
   DOCKER_TLS_CERTDIR: "/certs"
   #DOCKER_HOST: tcp://localhost:2375
@@ -84,13 +84,13 @@ build_test:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
-    
-    #- apk add git make musl-dev go 
+    - set -e 
+    - apk add sudo 
    # - go get -u github.com/FiloSottile/gvt
    # - go env GOPATH    
    # - gvt restore
     #- go get -u github.com/mattn/goveralls
-    - set -e
+
   #  - ./scripts/build.sh;
     - ./test/test.sh unit.py
 
