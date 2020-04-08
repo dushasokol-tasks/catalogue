@@ -27,6 +27,8 @@ echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
+cat /go/src/gitlab.com/iren.vasilevna/catalogue/test/unit.py
+
 $DOCKER_CMD run \
     --rm \
     --name test \
