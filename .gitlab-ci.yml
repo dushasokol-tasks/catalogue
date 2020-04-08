@@ -94,7 +94,7 @@ build_test:
     
     - apk add sudo
     - sudo ls
-   # - ./scripts/build.sh;
+    - ./scripts/build.sh;
     - ./test/test.sh unit.py
 
     #- docker build -t bolvan ./vendor
