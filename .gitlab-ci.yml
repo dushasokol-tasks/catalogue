@@ -92,7 +92,7 @@ build_test:
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
-    #- ./test/test.sh unit.py
+    - ./test/test.sh unit.py
 
     #- docker build -t bolvan ./vendor
     #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
