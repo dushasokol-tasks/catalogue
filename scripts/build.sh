@@ -7,6 +7,8 @@ export BUILD_DATE=`date +%Y-%m-%dT%T%z`
 
 SCRIPT_DIR=$(dirname "$0")
 
+echo ${SCRIPT_DIR}
+
 if [ -z "$GROUP" ] ; then
     echo "Cannot find GROUP env var"
     exit 1
