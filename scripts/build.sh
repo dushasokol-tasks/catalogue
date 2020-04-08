@@ -44,7 +44,7 @@ $DOCKER_CMD build \
   --build-arg BUILD_VERSION=$BUILD_VERSION \
   --build-arg BUILD_DATE=$BUILD_DATE \
   --build-arg COMMIT=$COMMIT \
-  -t 10.128.0.9:5000/${REPO}:${COMMIT} \
+  -t ${REPO}:${COMMIT} \
   -f $BUILD_DIR/docker/catalogue/Dockerfile $BUILD_DIR/docker/catalogue;
 
 $DOCKER_CMD build \
@@ -56,4 +56,4 @@ $DOCKER_CMD build \
 
 ls $BUILD_DIR/docker/catalogue-db/
 
-#rm -rf $BUILD_DIR
+rm -rf $BUILD_DIR
