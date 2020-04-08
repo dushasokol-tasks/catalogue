@@ -74,18 +74,19 @@ build_test:
     - branches
  # except:
  #   - master
-  image: $MY_COOL_REGISTY/bios:dc-ssh
-  services:
-  - name: docker:dind
-    entrypoint: ["dockerd-entrypoint.sh"]
-    command:  ["--insecure-registry=10.128.0.9:5000"]
+  image: golang:1.14.1-buster
+  #image: $MY_COOL_REGISTY/bios:dc-ssh
+  #services:
+  #- name: docker:dind
+  #  entrypoint: ["dockerd-entrypoint.sh"]
+   # command:  ["--insecure-registry=10.128.0.9:5000"]
 
 #  dependencies:
  #   - dep
 
   before_script:
     - *inject-gopath
-    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    #- docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
     - go get -u github.com/FiloSottile/gvt      
@@ -101,7 +102,7 @@ build_test:
     #- docker version
 
   after_script:
-    - docker ps
+    #- docker ps
     #- docker images
 
 
