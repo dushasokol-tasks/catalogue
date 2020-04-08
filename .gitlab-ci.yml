@@ -94,6 +94,8 @@ build_test:
     #- ./scripts/build.sh;
     - ./test/test1.sh unit.py
 
+    - sleep 10
+
     #- docker build -t bolvan ./vendor
     #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
