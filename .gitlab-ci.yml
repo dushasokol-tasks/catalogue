@@ -86,15 +86,13 @@ build_test:
   script:
     
     #- apk add git make musl-dev go 
-    - go get -u github.com/FiloSottile/gvt
-    - go env GOPATH    
-    - gvt restore
+   # - go get -u github.com/FiloSottile/gvt
+   # - go env GOPATH    
+   # - gvt restore
     #- go get -u github.com/mattn/goveralls
     - set -e
     
-    - ./scripts/build.sh;
-    - docker ps -a
-    - docker images
+   # - ./scripts/build.sh;
     - ./test/test.sh unit.py
 
     #- docker build -t bolvan ./vendor
