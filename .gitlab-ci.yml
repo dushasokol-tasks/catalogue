@@ -24,9 +24,10 @@ services:
 
 stages:
 # make all needs microservices containers for integrated tests
-  - create_containers
+#  - create_containers
 #
   - build_test
+  - create_containers
 # make go environment, build test_container, make unit tests
 #  - integration_tests
 # run all containers and check
@@ -46,15 +47,10 @@ create_containers:
   stage: create_containers
   tags:
 #    - dev
-  before_script:
-    - *inject-gopath
-    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+
   script: 
     - echo $repo_user
     - echo $DOCKER_HOST
-
-
-
     #- apk update && apk add bash && apk add sudo
     #- go version
 
@@ -89,6 +85,11 @@ build_test:
 
 #  dependencies:
  #   - dep
+
+  before_script:
+    - *inject-gopath
+    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+
   script:
     - docker build -t bolvan ./vendor
     - docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
