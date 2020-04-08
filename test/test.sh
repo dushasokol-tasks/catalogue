@@ -23,11 +23,10 @@ echo ${PYTHONPATH}
 go version
 
 echo "Testing $1"
-pwd
 
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
-${GOPATH}
+
 $DOCKER_CMD run \
     --rm \
     --name test \
