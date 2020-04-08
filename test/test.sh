@@ -24,10 +24,10 @@ go version
 
 echo "Testing $1"
 pwd
-ls
+
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
-echo ${GOPATH}
+${GOPATH}
 $DOCKER_CMD run \
     --rm \
     --name test \
