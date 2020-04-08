@@ -6,7 +6,7 @@ SCRIPT_DIR=`dirname "$0"`
 SCRIPT_NAME=`basename "$0"`
 SSH_OPTS=-oStrictHostKeyChecking=no
 
-if [[ "$(uname)" == "Darwin" || $GITLAB_OVERLAY == 1]]; then
+if [[ "$(uname)" == "Darwin" ]] || [[ $GITLAB_OVERLAY == 1 ]]; then
     DOCKER_CMD=docker
 else
     DOCKER_CMD="sudo docker"
