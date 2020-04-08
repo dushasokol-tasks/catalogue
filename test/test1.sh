@@ -12,7 +12,7 @@ else
     DOCKER_CMD="sudo docker"
 fi
 
-#echo $DOCKER_CMD
+echo $DOCKER_CMD
 
 if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
