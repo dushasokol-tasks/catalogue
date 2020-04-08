@@ -6,21 +6,29 @@ SCRIPT_DIR=`dirname "$0"`
 SCRIPT_NAME=`basename "$0"`
 SSH_OPTS=-oStrictHostKeyChecking=no
 
-if [[ "$(uname)" == "Darwin" ]]; then
+if [[ "$(uname)" == "Darwin" ]] || [[ $GITLAB_OVERLAY == 1 ]]; then
     DOCKER_CMD=docker
 else
     DOCKER_CMD="sudo docker"
 fi
+
+#echo $DOCKER_CMD
 
 if [[ -z $($DOCKER_CMD images | grep test-container) ]] ; then
     echo "Building test container"
     docker build -t test-container $SCRIPT_DIR > /dev/null
 fi
 
+#echo ${PYTHONPATH}
+#go version
+
 echo "Testing $1"
+
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
+
 $DOCKER_CMD run \
+    --privileged \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
