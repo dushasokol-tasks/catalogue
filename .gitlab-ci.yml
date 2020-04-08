@@ -88,7 +88,7 @@ build_test:
     #- apk add git make musl-dev go 
     - go get -u github.com/FiloSottile/gvt
     - go env GOPATH    
-    - gvt restore
+    - ./root/go/bin/gvt restore
     #- go get -u github.com/mattn/goveralls
     - set -e
     
