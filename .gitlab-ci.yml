@@ -62,6 +62,7 @@ dep:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
     #- docker push 10.128.0.9:5000/alpine
     #- docker pull distribution/registry:master
+    - docker-compose
     - docker version
     - docker build -t bolvan ./vendor
     #- docker save -o bolvan.tar bolvan
