@@ -22,7 +22,6 @@ fi
 echo ${PYTHONPATH}
 go version
 
-#python3 --version
 echo "Testing $1"
 pwd
 ls

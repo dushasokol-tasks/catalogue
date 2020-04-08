@@ -91,7 +91,7 @@ build_test:
    # - gvt restore
     #- go get -u github.com/mattn/goveralls
     - set -e
-    
+    - apk add sudo
    # - ./scripts/build.sh;
     - ./test/test.sh unit.py
 
