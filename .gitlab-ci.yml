@@ -54,7 +54,6 @@ dep:
   before_script:
     - *inject-gopath
   script: 
-    - ls /etc/docker/certs.d
     - echo $repo_user
     - echo $DOCKER_HOST
 
