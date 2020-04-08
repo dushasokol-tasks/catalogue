@@ -27,7 +27,7 @@ echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
-ls
+${PWD}
 
 $DOCKER_CMD run \
     --rm \
