@@ -84,12 +84,14 @@ build_test:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
-    #- apk add git make musl-dev go
-    - go get -u github.com/FiloSottile/gvt      
+    
+    #- apk add git make musl-dev go 
+    - go get -u github.com/FiloSottile/gvt
+    - go env GOPATH    
     - gvt restore
     #- go get -u github.com/mattn/goveralls
-
     - set -e
+    
     #- ./scripts/build.sh;
     #- docker build -t bolvan ./vendor
     #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
