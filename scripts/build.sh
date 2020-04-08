@@ -51,4 +51,6 @@ $DOCKER_CMD build \
   -t ${REPO}-db:${COMMIT} \
   -f $BUILD_DIR/docker/catalogue-db/Dockerfile $BUILD_DIR/docker/catalogue-db/;
 
+ls $BUILD_DIR/docker/catalogue-db/
+
 rm -rf $BUILD_DIR
