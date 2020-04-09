@@ -92,6 +92,7 @@ build_test:
     - mkdir -p ${SHARED_PATH}
     - rm ${SHARED_PATH}/*
     - touch ${SHARED_PATH}/test_file2
+    - pwd
     
    # - go get -u github.com/FiloSottile/gvt
    # - go env GOPATH    
