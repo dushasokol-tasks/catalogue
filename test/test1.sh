@@ -29,7 +29,7 @@ CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
 if [[ $GITLAB_OVERLAY != 1 ]]; then
-    SHARED_PATH=$CODE_DIR
+    PACKAGE_PATH=$CODE_DIR
 fi
 
 echo "dirs codedir $CODE_DIR"
@@ -44,7 +44,7 @@ $DOCKER_CMD run \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v $CODE_DIR:$CODE_DIR -w $CODE_DIR \
+    -v $PACKAGE_PATH:$PACKAGE_PATH -w $PACKAGE_PATH \
     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
