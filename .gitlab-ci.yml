@@ -93,14 +93,14 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
-    - docker build -t ${REPO}:${COMMIT} ./vendor
-    - docker build -t ${REPO}-db:${COMMIT} ./vendor
+    #- docker build -t ${REPO}:${COMMIT} ./vendor
+    #- docker build -t ${REPO}-db:${COMMIT} ./vendor
 
-    - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+    #- docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    #- docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-    - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+    #- docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    #- docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
   after_script:
     - docker ps
@@ -121,9 +121,9 @@ test:
     - *go_dind_gitlab_hack
 
     # unit
-    - ./test/test1.sh unit.py
+    #- ./test/test1.sh unit.py
     # integr MySql, API
-    - ./test/test1.sh container.py --tag $TAG
+    #- ./test/test1.sh container.py --tag $TAG
 
   after_script:
     - echo "send to artifactory"
@@ -138,7 +138,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner
+    - sonar-scanner -X
   #only:
   #  - merge_requests
   #  - master
