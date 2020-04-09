@@ -93,7 +93,7 @@ build_test:
     - mkdir -p ${SHARED_PATH}
     - rm -rf ${SHARED_PATH}/*
 
-    - ln -s ${CI_PROJECT_DIR} ${SHARED_PATH}
+    - ln -s ${SHARED_PATH} ${CI_PROJECT_DIR} 
 
     # - mkdir -p $(dirname ${PACKAGE_PATH}) 
     #   && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} 
