@@ -29,7 +29,10 @@ echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
-#echo "dirs"
+
+
+echo "dirs"
+ls -a $CODE_DIR
 #echo "codedir $CODE_DIR"
 #echo "scriptdir $SCRIPT_DIR"
 
