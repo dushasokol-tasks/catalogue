@@ -32,7 +32,7 @@ stages:
   
   - test
   - create_containers
-  - sonarcloud-check
+#  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
 #  - stage
 # release for human rewiev
@@ -125,22 +125,22 @@ test:
     # integr MySql, API
     - ./test/test1.sh container.py --tag $TAG
 
-    after_script:
-      - echo "send to artifactory"
+  after_script:
+    - echo "send to artifactory"
 
 
 sonarcloud-check:
- image:
-   name: sonarsource/sonar-scanner-cli:latest
-   entrypoint: [""]
- cache:
-   key: "${CI_JOB_NAME}"
-   paths:
-     - .sonar/cache
- script:
-   - sonar-scanner
- only:
-   - merge_requests
-   - master
-    - develop
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  only:
+  #  - merge_requests
+  #  - master
+  #  - develop
 
