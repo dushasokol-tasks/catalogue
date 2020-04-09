@@ -98,9 +98,9 @@ build_test:
 
     - ./scripts/build.sh;
     # unit
-    - ./test/test1.sh unit.py
+    #- ./test/test1.sh unit.py
     # integr MySql, API
-    - ./test/test1.sh container.py --tag $TAG
+    #- ./test/test1.sh container.py --tag $TAG
 
     #- sleep 10
 
