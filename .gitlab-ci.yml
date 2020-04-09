@@ -12,9 +12,7 @@ variables:
   GITLAB_OVERLAY: 1
 
   DOCKER_TLS_CERTDIR: "/certs"
-  #DOCKER_HOST: tcp://localhost:2375
-  #DOCKER_HOST: tcp://10.128.0.9:2376
-  #DOCKER_DRIVER: overlay2
+
 
 image: $MY_COOL_REGISTY/bios:dc-ssh
 #image: golang:1.14.1-alpine
@@ -97,7 +95,7 @@ build:
     - docker build -t ${REPO}:${COMMIT} ./vendor
 
     #- docker tag weaveworksdemos/catalogue-db 10.128.0.9:5000/${REPO}-db:${COMMIT}
-    - docker tag ${REPO}:${COMMIT} 10.128.0.9:5000/${REPO}:${COMMIT}
+    - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
 
     #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
 
@@ -124,9 +122,9 @@ test:
 
     #- ./scripts/build.sh;
     # unit
-    - ./test/test1.sh unit.py
+    #- ./test/test1.sh unit.py
     # integr MySql, API
-    - ./test/test1.sh container.py --tag $TAG
+    #- ./test/test1.sh container.py --tag $TAG
 
 
   after_script:
