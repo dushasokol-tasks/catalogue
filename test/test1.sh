@@ -40,7 +40,7 @@ ls -a $CODE_DIR
 #PYTHONPATH=$PWD/test
 
 $DOCKER_CMD run \
-    --tty
+    --tty \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
