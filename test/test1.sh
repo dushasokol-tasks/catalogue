@@ -30,7 +30,7 @@ GOPATH=${PWD}/vendor
 
 if [[ $GITLAB_OVERLAY != 1 ]]; then
     SHARED_PATH=$CODE_DIR
-
+fi
 
 echo "dirs codedir $CODE_DIR"
 ls -a $CODE_DIR
