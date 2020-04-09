@@ -29,9 +29,9 @@ echo "Testing $1"
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
-echo "dirs"
-echo "codedir $CODE_DIR"
-echo "scriptdir $SCRIPT_DIR"
+#echo "dirs"
+#echo "codedir $CODE_DIR"
+#echo "scriptdir $SCRIPT_DIR"
 
 $DOCKER_CMD run \
     --tty \
@@ -45,7 +45,7 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "pwd"
+    sh -c "pwd; echo 'cd is $PYTHONPATH ! $PWD'"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;"
