@@ -113,8 +113,8 @@ build_test:
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
-    - ./test/test1.sh unit.py
-   # - ./test/test.sh container.py --tag $TAG
+    #- ./test/test1.sh unit.py
+    - ./test/test.sh container.py --tag $TAG
 
     #- sleep 10
 
