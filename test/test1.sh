@@ -34,7 +34,7 @@ echo "codedir $CODE_DIR"
 echo "scriptdir $SCRIPT_DIR"
 
 $DOCKER_CMD run \
-    -it \
+    --tty \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
