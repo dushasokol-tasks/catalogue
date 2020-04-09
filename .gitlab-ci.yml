@@ -90,8 +90,8 @@ build_test:
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
     - echo $SHARED_PATH
     - mkdir -p ${SHARED_PATH}
-    - mkdir -p $(dirname ${PACKAGE_PATH})
-      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
+    - mkdir -p $(dirname ${PACKAGE_PATH}) \
+      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} \
       && ln -s ${SHARED_PATH} ${PACKAGE_PATH}
 #       && cd ${PACKAGE_PATH}
 
@@ -103,9 +103,9 @@ build_test:
     #- rm -r ${SHARED_PATH}/*
     #- cp -a $PWD/. ${SHARED_PATH}
     
-     - go get -u github.com/FiloSottile/gvt
+    - go get -u github.com/FiloSottile/gvt
     # - go env GOPATH    
-     - gvt restore
+    - gvt restore
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
