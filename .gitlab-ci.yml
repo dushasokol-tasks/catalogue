@@ -89,7 +89,6 @@ build:
     #- go get -u github.com/FiloSottile/gvt
     # - go env GOPATH    
     #- gvt restore
-
     #- ./scripts/build.sh;
 
     - docker build -t ${REPO}:${COMMIT} ./vendor
@@ -106,7 +105,7 @@ build:
     - docker images
 
     ############################ Stage
-test:
+unit_test:
   stage: test
   image: $MY_COOL_REGISTY/bios:dc-ssh
   before_script:
@@ -116,11 +115,6 @@ test:
     - set -e
     - apk add sudo
     - *go_dind_gitlab_hack
-    
-    #- go get -u github.com/FiloSottile/gvt
-    # - go env GOPATH    
-    #- gvt restore
-
 
     #- ./scripts/build.sh;
     # unit
@@ -128,8 +122,24 @@ test:
     # integr MySql, API
     #- ./test/test1.sh container.py --tag $TAG
 
+        ############################ Stage
+integr_test:
+  dependencies:
+    - unit_test
+  stage: test
+  image: $MY_COOL_REGISTY/bios:dc-ssh
+  before_script:
+    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
-  after_script:
-    - docker ps
-    - docker images
+  script:
+    - set -e
+    - apk add sudo
+    - *go_dind_gitlab_hack
+
+    #- ./scripts/build.sh;
+    # unit
+    #- ./test/test1.sh unit.py
+    # integr MySql, API
+    #- ./test/test1.sh container.py --tag $TAG
+
 
