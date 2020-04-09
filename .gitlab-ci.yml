@@ -101,7 +101,7 @@ build_test:
     - ls ${CI_PROJECT_DIR}
 
 
-    - docker run --rm --tty -v /builds/root/shared/vendor:/go/src/ -v /builds/root/shared:/go/src/github.com/microservices-demo/catalogue -w /go/src/github.com/microservices-demo/catalogue -e GOPATH=/go/ golang:1.7 /bin/sh -c "ls -a /"
+    - docker run --rm --tty -v /builds/root/shared/vendor:/go/src/ -v /builds/root/shared:/go/src/github.com/microservices-demo/catalogue -w /go/src/github.com/microservices-demo/catalogue -e GOPATH=/go/ golang:1.7 /bin/sh -c "ls -a /go"
 
 
     #- rm -r ${SHARED_PATH}/*
