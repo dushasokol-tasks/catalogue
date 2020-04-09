@@ -23,12 +23,13 @@ fi
 #go version
 # echo $SCRIPT_DIR
 
-
 echo "Testing $1"
 
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
 GOPATH=${PWD}/vendor
 
+if [[ $GITLAB_OVERLAY != 1 ]]; then
+    SHARED_PATH=$CODE_DIR
 
 
 echo "dirs codedir $CODE_DIR"

@@ -91,7 +91,6 @@ build_test:
     - echo $SHARED_PATH
     - mkdir -p ${SHARED_PATH}
     - rm ${SHARED_PATH}/*
-    - touch ${SHARED_PATH}/test_file2
     - cp -a $PWD/. ${SHARED_PATH}
     
    # - go get -u github.com/FiloSottile/gvt
