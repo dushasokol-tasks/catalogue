@@ -96,6 +96,9 @@ build_test:
 #       && cd ${PACKAGE_PATH}
 
     - echo "$SHARED_PATH $PACKAGE_PATH $CI_PROJECT_DIR"
+    - ls ${SHARED_PATH}
+    - ls ${PACKAGE_PATH}
+    - ls ${CI_PROJECT_DIR}
 
     #- rm -r ${SHARED_PATH}/*
     #- cp -a $PWD/. ${SHARED_PATH}
