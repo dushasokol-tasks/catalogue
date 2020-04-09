@@ -90,7 +90,7 @@ build_test:
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
     - echo $SHARED_PATH
     - mkdir -p ${SHARED_PATH}
-    - rm -f ${SHARED_PATH}/*
+    - rm -r ${SHARED_PATH}/*
     - cp -a $PWD/. ${SHARED_PATH}
     
    # - go get -u github.com/FiloSottile/gvt
