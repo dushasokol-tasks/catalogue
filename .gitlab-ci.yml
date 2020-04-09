@@ -93,6 +93,7 @@ build:
     #- ./scripts/build.sh;
 
     - docker build -t ${REPO}:${COMMIT} ./vendor
+    - docker build -t ${REPO}-db:${COMMIT} ./vendor
 
     - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
