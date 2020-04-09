@@ -43,14 +43,14 @@ $DOCKER_CMD run \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v $CODE_DIR/:$CODE_DIR -w $CODE_DIR \
+    -v /go:/go -w $CODE_DIR \
     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sleep 5 ; ls -a /go/src/gitlab.com/iren.vasilevna/"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sleep 5 ; ls -a /go/src/gitlab.com/iren.vasilevna/catalogue"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;" export PYTHONPATH=\$PATH:/usr/local/bin/python     -e PYTHONPATH=$PYTHONPATH \
