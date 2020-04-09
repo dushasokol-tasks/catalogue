@@ -40,18 +40,32 @@ ls -a $CODE_DIR
 #PYTHONPATH=$PWD/test
 
 $DOCKER_CMD run \
-    --tty \
+    --tty
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v $SHARED_PATH:$SHARED_PATH -w $SHARED_PATH \
+    -v $CODE_DIR:$CODE_DIR -w $CODE_DIR \
     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$SHARED_PATH/test ; ls -a ; python test/$@"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; python test/$@"
+
+# $DOCKER_CMD run \
+#     --tty \
+#     --rm \
+#     --name test \
+#     -v /var/run/docker.sock:/var/run/docker.sock \
+#     -v $SHARED_PATH:$SHARED_PATH -w $SHARED_PATH \
+#     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
+#     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
+#     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
+#     -e TRAVIS=$TRAVIS \
+#     -e GOPATH=$GOPATH \
+#     test-container \
+#     sh -c "export PYTHONPATH=\$PYTHONPATH:\$SHARED_PATH/test ; ls -a ; python test/$@"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;" export PYTHONPATH=\$PATH:/usr/local/bin/python     -e PYTHONPATH=$PYTHONPATH \
