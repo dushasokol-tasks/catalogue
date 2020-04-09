@@ -33,19 +33,22 @@ GOPATH=${PWD}/vendor
 #echo "codedir $CODE_DIR"
 #echo "scriptdir $SCRIPT_DIR"
 
+PYTHONPATH=\$PYTHONPATH:\$PWD/test
+
 $DOCKER_CMD run \
     --tty \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v $CODE_DIR:$CODE_DIR -w $CODE_DIR \
+    -e PYTHONPATH=$PYTHONPATH \
     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; echo $PYTHONPATH"
+    sh -c "echo $PYTHONPATH"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;"
