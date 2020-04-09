@@ -50,7 +50,7 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sleep 5 ; ls -a /go/src/gitlab.com/iren.vasilevna/catalogue"
+    sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; sleep 5 ; ls -a /go/src/gitlab.com/iren.vasilevna/"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;" export PYTHONPATH=\$PATH:/usr/local/bin/python     -e PYTHONPATH=$PYTHONPATH \
