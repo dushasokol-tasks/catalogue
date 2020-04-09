@@ -94,10 +94,11 @@ build:
 
     - docker build -t ${REPO}:${COMMIT} ./vendor
 
-    #- docker tag weaveworksdemos/catalogue-db 10.128.0.9:5000/${REPO}-db:${COMMIT}
     - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-    #- docker push 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
+    - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
   after_script:
     - docker ps
