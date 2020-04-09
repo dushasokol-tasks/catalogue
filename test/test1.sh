@@ -48,8 +48,8 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "python $@"
+    sh -c "python -h"
 
 
-#sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;"
+#sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;" export PYTHONPATH=\$PATH:/usr/local/bin/python
     #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls; pwd; python test/$@"
