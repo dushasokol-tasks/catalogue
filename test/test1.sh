@@ -33,7 +33,7 @@ GOPATH=${PWD}/vendor
 #echo "codedir $CODE_DIR"
 #echo "scriptdir $SCRIPT_DIR"
 
-PYTHONPATH=\$PYTHONPATH:\$PWD/test
+PYTHONPATH=$PWD/test
 
 $DOCKER_CMD run \
     --tty \
@@ -48,7 +48,7 @@ $DOCKER_CMD run \
     -e TRAVIS=$TRAVIS \
     -e GOPATH=$GOPATH \
     test-container \
-    sh -c "echo $PYTHONPATH"
+    sh -c "python test/$@"
 
 
 #sh -c "export PYTHONPATH=\$PYTHONPATH:\$PWD/test ; ls;"
