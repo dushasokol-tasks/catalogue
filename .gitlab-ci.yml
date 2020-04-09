@@ -93,6 +93,8 @@ build_test:
     - mkdir -p ${SHARED_PATH}
     - rm -rf ${SHARED_PATH}/*
 
+    - ln -s ${CI_PROJECT_DIR} ${SHARED_PATH}
+
     # - mkdir -p $(dirname ${PACKAGE_PATH}) 
     #   && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} 
     #   && ln -s ${SHARED_PATH} ${PACKAGE_PATH}
@@ -102,8 +104,6 @@ build_test:
     - echo "$SHARED_PATH"
     - ls ${SHARED_PATH}/vendor
     - echo "$PACKAGE_PATH"
-    - ls ${PACKAGE_PATH}/vendor
-    - echo "$CI_PROJECT_DIR"
     - ls ${CI_PROJECT_DIR}/vendor
 
     - ls -a /builds/root/shared/vendor
