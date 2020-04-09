@@ -85,16 +85,19 @@ build_test:
 
   script:
     - set -e 
-    - apk add sudo 
+    - apk add sudo
+
+    - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
+    -echo $SHARED_PATH
    # - go get -u github.com/FiloSottile/gvt
    # - go env GOPATH    
    # - gvt restore
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
-    - ./test/test1.sh unit.py
+    #- ./test/test1.sh unit.py
 
-    - sleep 10
+    #- sleep 10
 
     #- docker build -t bolvan ./vendor
     #- docker tag bolvan 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
