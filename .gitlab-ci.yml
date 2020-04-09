@@ -91,7 +91,7 @@ build_test:
     - echo $SHARED_PATH
 
     - mkdir -p ${SHARED_PATH}
-    - rm -r ${SHARED_PATH}/*
+    - rm -rf ${SHARED_PATH}/*
 
     # - mkdir -p $(dirname ${PACKAGE_PATH}) 
     #   && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} 
