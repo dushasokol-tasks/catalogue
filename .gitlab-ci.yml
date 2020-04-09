@@ -38,11 +38,11 @@ stages:
 # manual deploy to prod
  
 # A hack to make Golang-in-Gitlab happy
-.anchors:
-  - &inject-gopath
-      mkdir -p $(dirname ${PACKAGE_PATH})
-      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
-      && cd ${PACKAGE_PATH}
+# .anchors:
+#   - &inject-gopath
+#       mkdir -p $(dirname ${PACKAGE_PATH})
+#       && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
+#       && cd ${PACKAGE_PATH}
  
 create_containers:
   stage: create_containers
@@ -80,8 +80,8 @@ build_test:
  #   - dep
 
   before_script:
-    - *inject-gopath
-    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    # - *inject-gopath
+    # - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
 
   script:
     - set -e 
@@ -90,8 +90,15 @@ build_test:
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
     - echo $SHARED_PATH
     - mkdir -p ${SHARED_PATH}
-    - rm -r ${SHARED_PATH}/*
-    - cp -a $PWD/. ${SHARED_PATH}
+    - mkdir -p $(dirname ${PACKAGE_PATH})
+      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
+      && ln -s ${SHARED_PATH} ${PACKAGE_PATH}
+#       && cd ${PACKAGE_PATH}
+
+    - echo "$SHARED_PATH $PACKAGE_PATH $CI_PROJECT_DIR"
+
+    #- rm -r ${SHARED_PATH}/*
+    #- cp -a $PWD/. ${SHARED_PATH}
     
     # - go get -u github.com/FiloSottile/gvt
     # - go env GOPATH    
@@ -99,7 +106,7 @@ build_test:
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
-    - ./test/test1.sh unit.py
+    #- ./test/test1.sh unit.py
 
     #- sleep 10
 
