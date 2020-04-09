@@ -92,14 +92,8 @@ build:
     # - go env GOPATH    
     #- gvt restore
 
+    - ./scripts/build.sh;
 
-    #- ./scripts/build.sh;
-    # unit
-    #- ./test/test1.sh unit.py
-    # integr MySql, API
-    #- ./test/test1.sh container.py --tag $TAG
-
-    #- docker build -t bolvan ./vendor
     - docker tag weaveworksdemos/catalogue-db 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
     - docker tag weaveworksdemos/catalogue 10.128.0.9:5000/bolvan:$CI_COMMIT_REF_SLUG
 
