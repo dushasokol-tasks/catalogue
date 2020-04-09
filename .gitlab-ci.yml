@@ -88,7 +88,7 @@ build_test:
     - apk add sudo
 
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
-    -echo $SHARED_PATH
+    - echo $SHARED_PATH
    # - go get -u github.com/FiloSottile/gvt
    # - go env GOPATH    
    # - gvt restore
