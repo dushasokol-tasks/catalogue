@@ -21,7 +21,7 @@ fi
 
 #echo ${PYTHONPATH}
 #go version
-# echo $SCRIPT_DIR
+echo $SCRIPT_DIR
 
 echo "Testing $1"
 
