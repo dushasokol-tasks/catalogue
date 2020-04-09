@@ -90,8 +90,8 @@ build_test:
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
     - echo $SHARED_PATH
     - mkdir -p ${SHARED_PATH}
-    - mkdir -p $(dirname ${PACKAGE_PATH}) \
-      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} \
+    - mkdir -p $(dirname ${PACKAGE_PATH}) 
+      && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH} 
       && ln -s ${SHARED_PATH} ${PACKAGE_PATH}
 #       && cd ${PACKAGE_PATH}
 
