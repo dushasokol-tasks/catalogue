@@ -98,7 +98,7 @@ build_test:
     # - gvt restore
     #- go get -u github.com/mattn/goveralls
 
-    - ./scripts/build.sh;
+    #- ./scripts/build.sh;
     - ./test/test1.sh unit.py
 
     #- sleep 10
