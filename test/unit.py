@@ -11,7 +11,7 @@ class GoServices(unittest.TestCase):
         code_dir = script_dir + "/.."
         home = expanduser("~")
         goPath = os.environ['GOPATH']
-        command = ['docker', 'run', '--rm', '-v', '/builds/root/shared/vendor' + ':/go/src/', '-v', '/builds/root/shared' + ':/go/src/github.com/microservices-demo/catalogue', '-w', '/go/src/github.com/microservices-demo/catalogue', '-e', 'GOPATH=/go/', 'golang:1.7', 'go', 'test', '-v', '-covermode=count', '-coverprofile=coverage.out']
+        command = ['docker', 'run', '--rm', '--tty', '-v', '/builds/root/shared/vendor' + ':/go/src/', '-v', '/builds/root/shared' + ':/go/src/github.com/microservices-demo/catalogue', '-w', '/go/src/github.com/microservices-demo/catalogue', '-e', 'GOPATH=/go/', 'golang:1.7', 'ls -a' ]
 
         print(Docker().execute(command))
 
