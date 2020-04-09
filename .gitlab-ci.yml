@@ -103,9 +103,9 @@ build_test:
     #- rm -r ${SHARED_PATH}/*
     #- cp -a $PWD/. ${SHARED_PATH}
     
-    - go get -u github.com/FiloSottile/gvt
+    #- go get -u github.com/FiloSottile/gvt
     # - go env GOPATH    
-    - gvt restore
+    #- gvt restore
     #- go get -u github.com/mattn/goveralls
 
     #- ./scripts/build.sh;
