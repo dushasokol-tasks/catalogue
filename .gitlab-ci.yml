@@ -41,14 +41,16 @@ stages:
 #       mkdir -p $(dirname ${PACKAGE_PATH})
 #       && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
 #       && cd ${PACKAGE_PATH}
+
+
     ############################ A hack to make Golang-in-Gitlab happy
-  .go_dind_gitlab_hack: &go_dind_gitlab_hack
-    - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
-    - echo $SHARED_PATH
-    - rm -rf ${SHARED_PATH}/*
-    - ls -a ${SHARED_PATH}
-    - mkdir -p ${SHARED_PATH}  && ln -s ${CI_PROJECT_DIR} ${SHARED_PATH}
-    - 'export PACKAGE_PATH="$(dirname ${SHARED_PATH})/catalogue"' 
+.go_dind_gitlab_hack: &go_dind_gitlab_hack
+  - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
+  - echo $SHARED_PATH
+  - rm -rf ${SHARED_PATH}/*
+  - ls -a ${SHARED_PATH}
+  - mkdir -p ${SHARED_PATH}  && ln -s ${CI_PROJECT_DIR} ${SHARED_PATH}
+  - 'export PACKAGE_PATH="$(dirname ${SHARED_PATH})/catalogue"' 
     ############################
 
 ######################################################## 
