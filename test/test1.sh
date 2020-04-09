@@ -43,7 +43,7 @@ $DOCKER_CMD run \
     --rm \
     --name test \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /go:/go -w $CODE_DIR \
+    -v $SHARED_PATH:$CODE_DIR -w $CODE_DIR \
     -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID \
     -e TRAVIS_BRANCH=$TRAVIS_BRANCH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
