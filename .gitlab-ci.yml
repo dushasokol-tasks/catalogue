@@ -180,7 +180,7 @@ release:
   before_script:
     # - apt-get update
     # - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
-    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
+
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
     - gcloud auth activate-service-account --key-file=key.json
@@ -192,7 +192,7 @@ release:
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
 
-    
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL 
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
