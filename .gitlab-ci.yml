@@ -107,8 +107,8 @@ build:
     - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
     - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
-    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    - docker push $ARTIFACTORY_URL/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker push $ARTIFACTORY_URL/${REPO}:${COMMIT}
 
 
 
