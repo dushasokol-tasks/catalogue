@@ -30,9 +30,9 @@ stages:
 #
   - build
   
-  - test
-  - create_containers
-#  - sonarcloud-check
+##  - test
+##  - create_containers
+##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
 #  - stage
 # release for human rewiev
@@ -93,6 +93,10 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
+    - docker login dushasokol-catalogue-docker.jfrog.io
+
+
+
     - docker build -t ${REPO}:${COMMIT} ./vendor
     - docker build -t ${REPO}-db:${COMMIT} ./vendor
 
@@ -101,6 +105,12 @@ build:
 
     - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+
+
+    - docker tag ${REPO}:${COMMIT} dushasokol-catalogue-docker.jfrog.io/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker push dushasokol-catalogue-docker.jfrog.io/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+
+
 
   after_script:
     - docker ps
