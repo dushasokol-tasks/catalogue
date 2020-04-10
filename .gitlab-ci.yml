@@ -187,8 +187,9 @@ release:
 #    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
-
-    - apt-get install gettext-base
+    - apt-get update
+    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
+    
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
