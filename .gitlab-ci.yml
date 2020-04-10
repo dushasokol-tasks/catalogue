@@ -179,7 +179,7 @@ release:
     - name: docker:dind
   before_script:
 
-    - apt-get install gettext-base
+    - apt-get install gettext-base sudo
 
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
@@ -192,7 +192,7 @@ release:
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
     - docker --version
 
-    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    - sudo docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
     - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
