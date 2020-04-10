@@ -175,9 +175,11 @@ sonarcloud-check:
 release:
   stage: release
   image: 'google/cloud-sdk:latest'
+  services:
+    - name: docker:dind
   before_script:
-    - apt-get update
-    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
+    # - apt-get update
+    # - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
     - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
