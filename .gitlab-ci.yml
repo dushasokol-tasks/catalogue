@@ -28,6 +28,7 @@ stages:
 # make all needs microservices containers for integrated tests
 #  - create_containers
 #
+  - stage
   - build
   
   - test
@@ -126,16 +127,13 @@ test:
     # integr MySql, API
     #- ./test/test1.sh container.py --tag $TAG
 
-
- 
-
   after_script:
     - echo "send to artifactory"
     - docker pull ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker pull ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
     - docker tag ${MY_COOL_REGISTY}/${REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
-    - docker tag ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker tag ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT} $ARTIFACTORY_URL/${REPO}-db:${COMMIT}
 
     - docker push $ARTIFACTORY_URL/${REPO}:${COMMIT}
     - docker push $ARTIFACTORY_URL/${REPO}-db:${COMMIT}
@@ -143,7 +141,7 @@ test:
     - docker ps
     - docker images
 
-
+    ############################ Stage
 sonarcloud-check:
   image:
     name: sonarsource/sonar-scanner-cli:latest
@@ -158,4 +156,9 @@ sonarcloud-check:
     - merge_requests
     - master
   #  - develop
+
+    ############################ Stage
+release:
+  script:
+    -echo "release to stage"
 
