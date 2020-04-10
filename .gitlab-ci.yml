@@ -93,10 +93,6 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
-
-
-
-
     - docker build -t ${REPO}:${COMMIT} ./vendor
     - docker build -t ${REPO}-db:${COMMIT} ./vendor
 
@@ -105,12 +101,6 @@ build:
 
     - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
-
-    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
-    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
-    - docker push $ARTIFACTORY_URL/${REPO}:${COMMIT}
-
-
 
   after_script:
     - docker ps
@@ -124,6 +114,7 @@ test:
   image: $MY_COOL_REGISTY/bios:dc-ssh
   before_script:
     - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
 
   script:
     - set -e
@@ -135,12 +126,20 @@ test:
     # integr MySql, API
     #- ./test/test1.sh container.py --tag $TAG
 
-    
+
+ 
 
   after_script:
     - echo "send to artifactory"
     - docker pull ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker pull ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+
+    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker tag ${REPO}-db:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+
+    - docker push $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker push $ARTIFACTORY_URL/${REPO}-db:${COMMIT}
+
     - docker ps
     - docker images
 
