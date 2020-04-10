@@ -5,6 +5,8 @@
 
 set -e
 
+echo "debug"
+
 REGION=${REGION-us-central1}
 ZONE_EXTENSION=${ZONE_EXTENSION-b}
 ZONE=${REGION}-${ZONE_EXTENSION}
