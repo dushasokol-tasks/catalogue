@@ -190,6 +190,7 @@ release:
     - chmod +x ./deploy/prepare_yml.sh
 
     - ls -al ./deploy
+    - ./deploy/prepare_yml.sh
     - cat deploy.yml
 
 
