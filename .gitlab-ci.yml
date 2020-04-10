@@ -178,8 +178,8 @@ release:
   services:
     - name: docker:dind
   before_script:
-    # - apt-get update
-    # - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
+    - apt-get update
+    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
 
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
@@ -192,7 +192,8 @@ release:
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
     - docker --version
 
-    # - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL 
+    - docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
