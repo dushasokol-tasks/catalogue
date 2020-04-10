@@ -187,7 +187,7 @@ release:
 #    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
-    - ./deploy/prepare_yml.sh
+    - ls -al ./deploy/prepare_yml.sh
     - cat deploy.yml
 
 
