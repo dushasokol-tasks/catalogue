@@ -28,14 +28,14 @@ stages:
 # make all needs microservices containers for integrated tests
 #  - create_containers
 #
-  - stage
+  - release
   - build
   
   - test
   - create_containers
 ##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
-  - release
+#  - release
 # release for human rewiev
 #  - deploy
 # manual deploy to prod
@@ -93,13 +93,16 @@ build:
     # - go env GOPATH    
     #- gvt restore
     #- ./scripts/build.sh;
+
+
+
     #- cat ./deploy/script_gke_bootstrap_script.sh
-    - ls -la scripts/
+    #- ls -la scripts/
     # - chmod +o scripts/
-    - chmod +x scripts/gke.sh
-    - ls -la scripts/
+    #- chmod +x scripts/gke.sh
+    #- ls -la scripts/
     # - ls -la scripts/
-    - scripts/gke.sh up
+    #- scripts/gke.sh up
 
 
 
@@ -171,6 +174,14 @@ sonarcloud-check:
     ############################ Stage
 release:
   stage: release
+  image: 'gcloud-with-envsubst:latest'
+  before_script:
+  
   script:
+
+
+    — echo "$SERVICE_ACCOUNT_KEY" > key.json
+    — gcloud auth activate-service-account --key-file=key.json
+
     - echo "release to stage"
 
