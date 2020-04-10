@@ -174,7 +174,7 @@ sonarcloud-check:
     ############################ Stage
 release:
   stage: release
-  image: 'gcloud-with-envsubst:latest'
+  image: 'google/cloud-sdk:latest'
   before_script:
   
   script:
