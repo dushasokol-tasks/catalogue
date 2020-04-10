@@ -93,7 +93,7 @@ build:
     # - go env GOPATH    
     #- gvt restore
     #- ./scripts/build.sh;
-    - ls -a
+    - cat ./deploy/script_gke_bootstrap_script.sh
     - deploy/script_gke_bootstrap_script.sh
 
 
