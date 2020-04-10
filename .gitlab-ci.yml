@@ -93,14 +93,14 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
-    #- docker build -t ${REPO}:${COMMIT} ./vendor
-    #- docker build -t ${REPO}-db:${COMMIT} ./vendor
+    - docker build -t ${REPO}:${COMMIT} ./vendor
+    - docker build -t ${REPO}-db:${COMMIT} ./vendor
 
-    #- docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    #- docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+    - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-    #- docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    #- docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+    - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
   after_script:
     - docker ps
@@ -139,8 +139,8 @@ sonarcloud-check:
       - .sonar/cache
   script:
     - sonar-scanner -X
-  #only:
-  #  - merge_requests
-  #  - master
+  only:
+    - merge_requests
+    - master
   #  - develop
 
