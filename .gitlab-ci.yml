@@ -134,8 +134,8 @@ test:
     - docker pull ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker pull ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
-    - docker tag ${REPO}-db:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker tag ${MY_COOL_REGISTY}/{REPO}:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
+    - docker tag ${MY_COOL_REGISTY}/{REPO}-db:${COMMIT} $ARTIFACTORY_URL/${REPO}:${COMMIT}
 
     - docker push $ARTIFACTORY_URL/${REPO}:${COMMIT}
     - docker push $ARTIFACTORY_URL/${REPO}-db:${COMMIT}
