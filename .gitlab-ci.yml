@@ -96,7 +96,7 @@ build:
     #- cat ./deploy/script_gke_bootstrap_script.sh
     - ls -la scripts/
     # - chmod +o scripts/
-    - chmod +o scripts/gke.sh
+    - chmod +x scripts/gke.sh
     - ls -la scripts/
     # - ls -la scripts/
     - scripts/gke.sh up
