@@ -30,8 +30,8 @@ stages:
 #
   - build
   
-##  - test
-##  - create_containers
+  - test
+  - create_containers
 ##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
 #  - stage
