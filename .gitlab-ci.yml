@@ -16,7 +16,7 @@ variables:
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
 image: $MY_COOL_REGISTY/bios:dc-ssh
-#image: golang:1.14.1-alpine
+
 services:
   - name: docker:dind
     entrypoint: ["dockerd-entrypoint.sh"]
@@ -35,7 +35,7 @@ stages:
   - create_containers
 ##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
-#  - stage
+  - release
 # release for human rewiev
 #  - deploy
 # manual deploy to prod
