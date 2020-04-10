@@ -93,9 +93,8 @@ build:
     # - go env GOPATH    
     #- gvt restore
     #- ./scripts/build.sh;
-    - apk add sudo
-    - sudo ls -a 
-    - sudo ./deploy/script_gke_bootstrap_script.sh
+
+    - deploy/script_gke_bootstrap_script.sh
 
 
 
