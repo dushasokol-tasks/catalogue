@@ -93,7 +93,7 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
-    - docker login dushasokol-catalogue-docker.jfrog.io
+
 
 
 
@@ -106,9 +106,9 @@ build:
     - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
     - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-
-    - docker tag ${REPO}:${COMMIT} dushasokol-catalogue-docker.jfrog.io/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    - docker push dushasokol-catalogue-docker.jfrog.io/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
+    - docker tag ${REPO}:${COMMIT} $ARTIFACTORY_URL/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker push $ARTIFACTORY_URL/${MY_COOL_REGISTY}/${REPO}:${COMMIT}
 
 
 
