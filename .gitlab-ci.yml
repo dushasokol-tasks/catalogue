@@ -159,6 +159,7 @@ sonarcloud-check:
 
     ############################ Stage
 release:
+  stage: release
   script:
-    -echo "release to stage"
+    - echo "release to stage"
 
