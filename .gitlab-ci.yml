@@ -188,6 +188,8 @@ release:
     - gcloud config set container/cluster $CLUSTER_NAME
     - gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
+    
+    - docker info
 #    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
     - docker --version
