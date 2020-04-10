@@ -125,8 +125,12 @@ test:
     # integr MySql, API
     #- ./test/test1.sh container.py --tag $TAG
 
+    
+
   after_script:
     - echo "send to artifactory"
+    - docker pull ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker pull ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
     - docker ps
     - docker images
 
