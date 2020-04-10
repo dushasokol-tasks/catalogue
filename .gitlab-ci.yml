@@ -95,7 +95,7 @@ build:
     #- ./scripts/build.sh;
     - apk add sudo
     - sudo ls -a 
-    #./deploy/script_gke_bootstrap_script.sh up
+    - sudo ./deploy/script_gke_bootstrap_script.sh up
 
 
 
