@@ -179,7 +179,7 @@ release:
   
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
-    - cat key.json
+    - gcloud auth activate-service-account --key-file=key.json
     #  - gcloud auth activate-service-account --key-file=key.json
 
     - echo "release to stage"
