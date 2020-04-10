@@ -94,7 +94,7 @@ build:
     #- gvt restore
     #- ./scripts/build.sh;
 
-    - ./deploy/gke_bootstrap_script.sh up
+    - ./deploy/script_gke_bootstrap_script.sh up
 
 
 
