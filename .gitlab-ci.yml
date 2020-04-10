@@ -178,8 +178,8 @@ release:
   services:
     - name: docker:dind
   before_script:
-    - apt-get update
-    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
+
+    - apt-get install gettext-base
 
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
