@@ -176,7 +176,7 @@ release:
   stage: release
   image: 'google/cloud-sdk:latest'
   before_script:
-  
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
     - gcloud auth activate-service-account --key-file=key.json
@@ -190,7 +190,7 @@ release:
 
     - apt-get install gettext-base
 
-    - cat deploy/stage.yml | envsubst
+    - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
    # - chmod +x ./deploy/prepare_yml.sh
 
