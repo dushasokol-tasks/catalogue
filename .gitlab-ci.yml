@@ -127,6 +127,8 @@ test:
 
   after_script:
     - echo "send to artifactory"
+    - docker ps
+    - docker images
 
 
 sonarcloud-check:
