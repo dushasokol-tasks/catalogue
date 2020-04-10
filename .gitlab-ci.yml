@@ -176,6 +176,8 @@ release:
   stage: release
   image: 'google/cloud-sdk:latest'
   before_script:
+    - apt-get update
+    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
     - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
@@ -187,8 +189,7 @@ release:
 #    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
-    - apt-get update
-    - apt-get install gettext-base docker-ce docker-ce-cli containerd.io
+
     
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
