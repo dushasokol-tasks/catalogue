@@ -211,6 +211,6 @@ clean:
   script:
     - chmod +x ./deploy/gke.sh
     - ./deploy/gke.sh
-    - gcloud container clusters delete $CLUSTER_NAME --quiet
+    - gcloud container clusters delete $CLUSTER_NAME --quiet 
   when: manual
 
