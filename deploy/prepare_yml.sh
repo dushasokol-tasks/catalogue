@@ -9,7 +9,7 @@ STAGE_CLUSTER_EXISTS = ''
      gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
      #STAGE_CLUSTER_NAME = $(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
-STAGE_CLUSTER_EXISTS = $(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
+STAGE_CLUSTER_EXISTS = $(gcloud container clusters list | grep -c "$CLUSTER_NAME")
 
      echo " STTTTT $STAGE_CLUSTER_EXISTS"
 
