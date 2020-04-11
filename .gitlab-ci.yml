@@ -30,7 +30,7 @@ stages:
   - build
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
   - test
-##  - sonarcloud-check
+  - sonarcloud-check
 # release for human rewiev 
   - release
   - clean
@@ -119,8 +119,8 @@ sonarcloud-check:
   script:
     - sonar-scanner -X
   only:
-    - merge_requests
-    - master
+  #  - merge_requests
+  #  - master
   #  - develop
 
     ############################ Stage
