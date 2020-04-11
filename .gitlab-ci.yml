@@ -208,6 +208,6 @@ clean:
   script:
     - chmod +x ./deploy/prepare_yml.sh
     - ./deploy/prepare_yml.sh
-    - gcloud container clusters delete $CLUSTER_NAME --non-interactive
+    - gcloud container clusters delete $CLUSTER_NAME --quiet
   when: manual
 
