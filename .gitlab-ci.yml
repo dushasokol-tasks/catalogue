@@ -1,17 +1,17 @@
 variables:
   PACKAGE_PATH: /go/src/gitlab.com/iren.vasilevna/catalogue
-######################
+###################### orginal
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   GROUP: weaveworksdemos
   COMMIT: $CI_BUILD_REF
   TAG: $CI_COMMIT_TAG 
-######################
+###################### myown
   REPO: catalogue
   MY_COOL_REGISTY: 10.128.0.9:5000
   GITLAB_OVERLAY: 1
   DOCKER_TLS_CERTDIR: "/certs"
-#####################
+##################### 3rdparty
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
@@ -174,12 +174,11 @@ sonarcloud-check:
     ############################ Stage
 release:
   stage: release
-  image: 'google/cloud-sdk:latest'
+  image: $MY_COOL_REGISTY/gcloud:es
   services:
     - name: docker:dind
   before_script:
-
-    - apt-get install gettext-base sudo
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
 
   script:
     - echo "$SERVICE_ACCOUNT_KEY" > key.json
@@ -190,12 +189,11 @@ release:
 
     
     - docker info
-#    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
+    - gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
     - docker --version
 
-    - sudo docker login -u$repo_user -p$repo_pass $MY_COOL_REGISTY
-    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
+
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
