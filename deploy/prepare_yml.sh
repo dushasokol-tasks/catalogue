@@ -9,7 +9,7 @@ STAGE_CLUSTER_NAME=''
      gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
      #STAGE_CLUSTER_NAME = $(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
-STAGE_CLUSTER_NAME=$(gcloud container clusters list | grep sock-shop)
+STAGE_CLUSTER_NAME=$(gcloud container clusters list | grep -c "demo-sock")
 
      echo " STTTTT $STAGE_CLUSTER_NAME"
 
