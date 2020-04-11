@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+stage_cluster_name=''
+
      echo "$SERVICE_ACCOUNT_KEY" > key.json
      gcloud auth activate-service-account --key-file=key.json
      gcloud config set project $PROJECT
