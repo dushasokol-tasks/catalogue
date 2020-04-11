@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-stage_cluster_name=''
+STAGE_CLUSTER_NAME=''
 
      echo "$SERVICE_ACCOUNT_KEY" > key.json
      gcloud auth activate-service-account --key-file=key.json
@@ -8,12 +8,12 @@ stage_cluster_name=''
      gcloud config set container/cluster $CLUSTER_NAME
      gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
-     stage_cluster_name = result=$(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
+     STAGE_CLUSTER_NAME = result=$(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
 
 
-     echo stage_cluster_name
+     echo "$STAGE_CLUSTER_NAME"
 
-     if [[ $stage_cluster_name != $CLUSTER_NAME ]]; then
+     if [[ $STAGE_CLUSTER_NAME != $CLUSTER_NAME ]]; then
         gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
         kubectl create namespace sock-shop
      fi
