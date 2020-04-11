@@ -18,6 +18,3 @@ STAGE_CLUSTER_EXISTS=0
 
      gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
-     if [[ $STAGE_CLUSTER_EXISTS == 0 ]]; then
-        kubectl create namespace sock-shop
-     fi
