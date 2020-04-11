@@ -12,6 +12,8 @@ spec:
       labels:
         name: catalogue-db
     spec:
+      imagePullSecrets:
+      - name: re01
       containers:
       - name: catalogue-db
         image: dushasokol-catalogue-docker.jfrog.io/catalogue-db:6d0dadf1293e68b5705a8d25d1b6b47113d21e7e
@@ -26,20 +28,7 @@ spec:
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: catalogue-db
-  labels:
-    name: catalogue-db
-  namespace: sock-shop
-spec:
-  ports:
-    # the port that this service should serve on
-  - port: 3306
-    targetPort: 3306
-  selector:
-    name: catalogue-db
+
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -55,6 +44,8 @@ spec:
       labels:
         name: catalogue
     spec:
+      imagePullSecrets:
+      - name: re01
       containers:
       - name: catalogue
         image: dushasokol-catalogue-docker.jfrog.io/catalogue:6d0dadf1293e68b5705a8d25d1b6b47113d21e7e
@@ -72,18 +63,5 @@ spec:
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: catalogue
-  labels:
-    name: catalogue
-  namespace: sock-shop
-spec:
-  ports:
-    # the port that this service should serve on
-  - port: 80
-    targetPort: 80
-  selector:
-    name: catalogue
+
 ---

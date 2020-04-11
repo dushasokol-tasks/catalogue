@@ -18,3 +18,5 @@ STAGE_CLUSTER_EXISTS=0
 
      gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
 
+     echo "$ARTIFACTORY_AUTH_CONFIG" > art.json
+     kubectl create secret generic re01 --from-file=.dockerconfigjson=art.json  --type=kubernetes.io/dockerconfigjson --namespace=sock-shop

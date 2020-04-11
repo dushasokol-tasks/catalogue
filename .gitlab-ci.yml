@@ -186,8 +186,9 @@ release:
   script:
     - chmod +x ./deploy/gke.sh
     - ./deploy/gke.sh
+
     - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -v -X GET https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
-    - cat complete-demo.yaml | envsubst | kubectl apply -f -
+    - kubectl apply -f complete-demo.yaml
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
