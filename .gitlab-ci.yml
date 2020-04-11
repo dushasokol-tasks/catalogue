@@ -186,7 +186,8 @@ release:
     - curl -u $ARTIFACTORY_USER:$ARTIFACTORY -v -X GET https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
     - cat complete-demo.yaml | envsubst | kubectl apply -f -
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
-    - echo "FRONTEND URL IS : $(kubectl describe svc front-end -n sock-shop)"
+    - FE_URL=$(kubectl describe svc front-end -n sock-shop)
+    - echo "FRONTEND URL $FE_URL"
 
     #https://raw.githubusercontent.com/user/repository/branch/filename
     #- docker info
