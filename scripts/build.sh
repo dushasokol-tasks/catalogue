@@ -38,7 +38,7 @@ cp $CODE_DIR/*.go $BUILD_DIR/docker/catalogue/
 mkdir -p $BUILD_DIR/docker/catalogue/vendor/ && \
 cp $CODE_DIR/vendor/manifest $BUILD_DIR/docker/catalogue/vendor/
 
-REPO=${GROUP}/$(basename catalogue);
+#REPO=${GROUP}/$(basename catalogue);
 
 $DOCKER_CMD build \
   --build-arg BUILD_VERSION=$BUILD_VERSION \
