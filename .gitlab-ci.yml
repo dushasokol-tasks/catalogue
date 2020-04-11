@@ -133,7 +133,7 @@ release:
     - chmod +x ./deploy/gke.sh
     - ./deploy/gke.sh
 
-    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -o complete-demo.yml https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
+    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -o complete-demo.yaml https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
 
     - ls -al
 
