@@ -33,6 +33,8 @@ stages:
   
   - test
   - create_containers
+
+  - clean
 ##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
 #  - release
@@ -189,23 +191,22 @@ release:
     - FE_URL=$(kubectl describe svc front-end -n sock-shop | grep "LoadBalancer Ingress")
     - echo "FRONTEND URL $FE_URL"
 
-    #https://raw.githubusercontent.com/user/repository/branch/filename
-    #- docker info
-    #- gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
+    ############################ Stage
+clean:
+  stage: clean
+  image: $MY_COOL_REGISTY/gcloud:es
+  services:
+    - name: docker:dind
+  dependencies:
+    - release
 
 
+  before_script:
+    - docker login -u$ARTIFACTORY_USER -p$ARTIFACTORY_PASS $ARTIFACTORY_URL
 
-
-
-    
-
-
-
-    # - ls -al ./deploy
-    # - ./deploy/prepare_yml.sh
-    # - cat deploy.yml
-
-
-
-    - echo "release to stage"
+  script:
+    - chmod +x ./deploy/prepare_yml.sh
+    - ./deploy/prepare_yml.sh
+    - gcloud container clusters delete $CLUSTER_NAME
+  when: manual
 
