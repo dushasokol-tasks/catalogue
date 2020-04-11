@@ -25,14 +25,14 @@ services:
 
     ############################ StageS
 stages:
-
+  - release
 # make containers
   - build
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
   - test
   - sonarcloud-check
 # release for human rewiev 
-  - release
+
   - clean
  
     ############################ A hack to make Golang-in-Gitlab happy
@@ -134,6 +134,9 @@ release:
     - ./deploy/gke.sh
 
     - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -o complete-demo.yml https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
+
+    - ls -al
+
     - kubectl apply -f complete-demo.yaml
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
