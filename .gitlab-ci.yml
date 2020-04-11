@@ -25,32 +25,16 @@ services:
 
     ############################ StageS
 stages:
-# make all needs microservices containers for integrated tests
-#  - create_containers
-#
+
+# make containers
+  - build
+# make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
+  - test
+##  - sonarcloud-check
+# release for human rewiev 
   - release
   - clean
-  - build
-  
-  - test
-  - create_containers
-
-
-##  - sonarcloud-check
-# make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
-#  - release
-# release for human rewiev
-#  - deploy
-# manual deploy to prod
  
-# A hack to make Golang-in-Gitlab happy
-# .anchors:
-#   - &inject-gopath
-#       mkdir -p $(dirname ${PACKAGE_PATH})
-#       && ln -s ${CI_PROJECT_DIR} ${PACKAGE_PATH}
-#       && cd ${PACKAGE_PATH}
-
-
     ############################ A hack to make Golang-in-Gitlab happy
 .go_dind_gitlab_hack: &go_dind_gitlab_hack
   - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"' 
@@ -61,27 +45,6 @@ stages:
   - 'export PACKAGE_PATH="$(dirname ${SHARED_PATH})/catalogue"' 
     ############################
 
-    ############################ Stage
-create_containers:
-  stage: create_containers
-#  tags:
-#    - dev
-  # only:
-  #   - branches
- # except:
- #   - master
- #  dependencies:
- #   - dep
-
-  script: 
-    - echo $repo_user
-    - echo $DOCKER_HOST
-
-  after_script:
-    - docker ps
-    - docker images
-
-    ############################ Stage
 build:
   stage: build
   image: $MY_COOL_REGISTY/bios:dc-ssh
@@ -92,33 +55,19 @@ build:
     - set -e
     - *go_dind_gitlab_hack
     
-    #- go get -u github.com/FiloSottile/gvt
-    # - go env GOPATH    
-    #- gvt restore
-    #- ./scripts/build.sh;
+    - go get -u github.com/FiloSottile/gvt
+    - go env GOPATH    
+    - gvt restore
+    - ./scripts/build.sh;
 
+    - docker build -t ${REPO}:${COMMIT} ./vendor
+    - docker build -t ${REPO}-db:${COMMIT} ./vendor
 
+    - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
-    #- cat ./deploy/script_gke_bootstrap_script.sh
-    #- ls -la scripts/
-    # - chmod +o scripts/
-    #- chmod +x scripts/gke.sh
-    #- ls -la scripts/
-    # - ls -la scripts/
-    #- scripts/gke.sh up
-
-
-
-
-
-    # - docker build -t ${REPO}:${COMMIT} ./vendor
-    # - docker build -t ${REPO}-db:${COMMIT} ./vendor
-
-    # - docker tag ${REPO}:${COMMIT} ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    # - docker tag ${REPO}-db:${COMMIT} ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
-
-    # - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
-    # - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
+    - docker push ${MY_COOL_REGISTY}/${REPO}:${COMMIT}
+    - docker push ${MY_COOL_REGISTY}/${REPO}-db:${COMMIT}
 
   after_script:
     - docker ps
@@ -140,9 +89,9 @@ test:
     - *go_dind_gitlab_hack
 
     # unit
-    #- ./test/test1.sh unit.py
+    - ./test/test1.sh unit.py
     # integr MySql, API
-    #- ./test/test1.sh container.py --tag $TAG
+    - ./test/test1.sh container.py --tag $TAG
 
   after_script:
     - echo "send to artifactory"
@@ -191,10 +140,6 @@ release:
     - kubectl apply -f complete-demo.yaml
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
-
-
-    # - FE_URL=$(kubectl describe svc front-end -n sock-shop | grep "LoadBalancer Ingress")
-    # - echo "FRONTEND URL $FE_URL"
 
     ############################ Stage
 clean:
