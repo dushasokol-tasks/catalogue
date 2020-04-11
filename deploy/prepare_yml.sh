@@ -9,9 +9,9 @@ STAGE_CLUSTER_NAME=''
      gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
      #STAGE_CLUSTER_NAME = $(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
+STAGE_CLUSTER_NAME=$(gcloud container clusters list)
 
-
-     echo "$STAGE_CLUSTER_NAME"
+     echo " STTTTT $STAGE_CLUSTER_NAME"
 
      if [[ $STAGE_CLUSTER_NAME != $CLUSTER_NAME ]]; then
         gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
