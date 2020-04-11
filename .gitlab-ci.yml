@@ -188,12 +188,12 @@ release:
     - ./deploy/gke.sh
     - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -v -X GET https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
     - cat complete-demo.yaml | envsubst | kubectl apply -f -
-    - sleep 20
+
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
-    - sleep 5
-    - FE_URL=$(kubectl describe svc front-end -n sock-shop | grep "LoadBalancer Ingress")
-    - echo "FRONTEND URL $FE_URL"
+
+    # - FE_URL=$(kubectl describe svc front-end -n sock-shop | grep "LoadBalancer Ingress")
+    # - echo "FRONTEND URL $FE_URL"
 
     ############################ Stage
 clean:
