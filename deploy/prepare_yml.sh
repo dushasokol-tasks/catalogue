@@ -8,9 +8,7 @@ STAGE_CLUSTER_EXISTS=0
      gcloud config set container/cluster $CLUSTER_NAME
      gcloud config set compute/zone $REGION-$ZONE_EXTENSION
 
-     #STAGE_CLUSTER_NAME = $(gcloud container clusters list | grep -c "${CLUSTER_NAME}")
-     echo "CN  ${CLUSTER_NAME}"
-STAGE_CLUSTER_EXISTS=$(gcloud container clusters list | grep -c ${CLUSTER_NAME})
+     STAGE_CLUSTER_EXISTS=$(gcloud container clusters list | grep -c ${CLUSTER_NAME})
 
      echo " STTTTT $STAGE_CLUSTER_EXISTS"
 
@@ -21,4 +19,7 @@ STAGE_CLUSTER_EXISTS=$(gcloud container clusters list | grep -c ${CLUSTER_NAME})
      fi
 
      gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION-$ZONE_EXTENSION
-                  kubectl create namespace sock-shop
+
+     if [[ $STAGE_CLUSTER_EXISTS == 0 ]]; then
+        kubectl create namespace sock-shop
+     fi

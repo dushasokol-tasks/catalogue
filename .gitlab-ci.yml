@@ -183,9 +183,11 @@ release:
   script:
     - chmod +x ./deploy/prepare_yml.sh
     - ./deploy/prepare_yml.sh
-    - cat deploy/stage1.yml | envsubst | kubectl apply -f -
+    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY GET " https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml"
+    - cat complete-demo.yaml | envsubst | kubectl apply -f -
+ #   - cat deploy/stage1.yml | envsubst | kubectl apply -f -
 
-    
+    #https://raw.githubusercontent.com/user/repository/branch/filename
     #- docker info
     #- gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
 
