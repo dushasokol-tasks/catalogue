@@ -25,14 +25,14 @@ services:
 
     ############################ StageS
 stages:
-  - release
+
 # make containers
   - build
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
   - test
   - sonarcloud-check
 # release for human rewiev 
-
+  - release
   - clean
  
     ############################ A hack to make Golang-in-Gitlab happy
