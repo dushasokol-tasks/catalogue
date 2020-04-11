@@ -133,7 +133,7 @@ release:
     - chmod +x ./deploy/gke.sh
     - ./deploy/gke.sh
 
-    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -O GET https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
+    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -o complete-demo.yml https://dushasokol.jfrog.io/artifactory/shop-sock-infra/complete-demo.yaml
     - kubectl apply -f complete-demo.yaml
 
     - cat deploy/stage1.yml | envsubst | kubectl apply -f -
