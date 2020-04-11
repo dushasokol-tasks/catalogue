@@ -10,8 +10,6 @@ STAGE_CLUSTER_EXISTS=0
 
      STAGE_CLUSTER_EXISTS=$(gcloud container clusters list | grep -c ${CLUSTER_NAME})
 
-     echo " STTTTT $STAGE_CLUSTER_EXISTS"
-
      if [[ $STAGE_CLUSTER_EXISTS == 0 ]]; then
         echo "Create cluster"
         gcloud container clusters create $CLUSTER_NAME --enable-autoupgrade --enable-autoscaling --min-nodes=2 --max-nodes=4 --num-nodes=4 --zone=$REGION-$ZONE_EXTENSION
