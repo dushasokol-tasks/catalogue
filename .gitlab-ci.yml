@@ -29,12 +29,13 @@ stages:
 #  - create_containers
 #
   - release
+  - clean
   - build
   
   - test
   - create_containers
 
-  - clean
+
 ##  - sonarcloud-check
 # make go environment, build test_container, make unit tests, integration mock tests, sends to artifactory
 #  - release
@@ -207,6 +208,6 @@ clean:
   script:
     - chmod +x ./deploy/prepare_yml.sh
     - ./deploy/prepare_yml.sh
-    - gcloud container clusters delete $CLUSTER_NAME
+    - gcloud container clusters delete $CLUSTER_NAME --non-interactive
   when: manual
 
